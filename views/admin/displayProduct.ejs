@@ -1,0 +1,213 @@
+<%-include("../layoutsAdmin/header.ejs")%>
+    <div class="screen-overlay"></div>
+
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index.html" class="brand-wrap">
+                <img src="/admin-assets/imgs/theme/feragamo.jpg" class="logo" alt="Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/Dashboard"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/dashboard/products"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+               </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/dashboard/ordersPagination"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+               </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/dashboard/users"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Users</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/dashboard/categories"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Category</span>
+                    </a>
+                    </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/dashboard/salesreport"> <i class="icon material-icons md-comment"></i>
+                        <span class="text">Sales Report</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link"  href="/admin/dashboard/offer"> <i class="icon material-icons md-pie_chart"></i>
+                        <span class="text">Offer Management</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link"  href="/admin/dashboard/coupon"> <i class="icon material-icons md-pie_chart"></i>
+                        <span class="text">Manage coupon</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/dashboard/banner"> <i class="icon material-icons md-local_offer"></i>
+                        <span class="text"> Banner Management</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <br>
+            <br>
+        </nav>
+    </aside>
+
+    <main class="main-wrap">
+
+
+        <header class="main-header navbar">
+            <div class="col-search">
+                <a href="/admin/logout" class="btn btn-primary"></i>Log Out</a>
+            </div>
+        </header>
+ <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Products List</h2>
+                </div></div>
+                  <!-- Create New Button  -->
+        <form action="">
+            <div style="display: inline-block;">
+                <a href="/addProduct" class="btn btn-primary btn-sm rounded">+Create new</a>
+            </div>
+        </form>
+
+                       <!--Table starts-->
+
+            <div class="card-body">
+                <div class="table-responsive">
+
+
+                    <table class="table table-hover" id="myTable">
+
+
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Brand</th>
+                                <th>Gender</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>price</th>
+                                <th>Action </th>
+                            </tr>
+                        </thead>
+                         <tbody>
+                            <tr>
+                            </tr>
+
+                            <% for(let i=0;i<product.length;i++){ %>
+                                <tr>
+                                    <td width="30%">
+                                        <a href="#" class="itemside">
+                                            <div class="info pl-3">
+                                                <h6 class="mb-0 title">
+                                                    
+                                                    <img src="/productImages/<%=product[i].images[0]%>" class="img-sm img-thumbnail" alt="Item">
+                                                </h6>
+                                            </div>
+                                            <h6 class="mb-0 tooltip-ellipsis" title="<%=product[i].name %>"><%= product[i].name %></h6>
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        <h6 class="mb-0 tooltip-ellipsis" title="<%=product[i].description %>"><%= product[i].description %></h6>
+                                    </td>
+                                    <td>
+                                        <h6 class="mb-0 tooltip-ellipsis" title="Gender"><%= product[i].gender %></h6>
+                                    </td>
+                                    <td>
+                                        <h6 class="mb-0 tooltip-ellipsis" title="<%=product[i].category %>"><%=product[i].category%></h6> 
+                                    </td>
+                                    <td>
+                                        <h6 class="mb-0 tooltip-ellipsis" title="<%=product[i].stock %>"><%= product[i].stock %></h6>
+                                    </td>
+                                    <td>
+                                        <h6 class="mb-0 tooltip-ellipsis" title="<%=product[i].price %>"><%= product[i].price %></h6>
+                                    </td>
+
+                                    <td>
+                                        
+                                        <a href="/admin/dashboard/products/edit?id=<%=product[i]._id %>" class="btn btn-md rounded font-sm">Edit</a>
+
+                                      
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-switch" style="margin-left: 30px;"></div>
+
+                                        <% if (product[i].isListed === true ) { %>
+                                             <button><a href="/admin/unListProduct/<%=product[i]._id %>">Deactivate</a></button>
+                                            <p style="color: rgb(35, 146, 7);">Product Active</p>
+                                           
+                                            
+                                          <!-- <input class="form-check-input" type="checkbox" id="categoryToggle"  checked>
+                                          <label class="form-check-label toggle-label" for="categoryToggle"></label> -->
+                                        <% } else { %>
+                                            <button> <a href="/admin/reListProduct/<%=product[i]._id %>">Activate</a></button>
+                                            <p style="color: brown;">Product Inactive</p>
+                                         
+                                          <!-- <input class="form-check-input" type="checkbox" id="categoryToggle">
+                                          <label class="form-check-label toggle-label" for="categoryToggle"></label> -->
+                                          
+                                        <% } %> 
+                                        
+                                        <!-- <a href=""> <button class="btn btn-md rounded font-sm">Deactivate</button> </a>
+                                        <p style="color: rgb(35, 146, 7);">category Active</p>
+                                        -->
+
+                                    </td>
+
+                                </tr>
+                                <% } %>
+                                </tbody>
+                            </table> <!-- table-responsive.// -->
+                        </div>
+                       </div> <!-- card-body end// -->
+                     </div> 
+                    <br>
+
+         
+
+
+
+</section> <!-- content-main end// -->
+                     <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                    document.write(new Date().getFullYear())
+                    </script> ©, Evara - HTML Ecommerce Template .
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+       
+        
+             
+
+    </main>
+    <script src="assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/vendors/select2.min.js"></script>
+    <script src="assets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="assets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="assets/js/main.js" type="text/javascript"></script>
+
+    <%-include("../layoutsAdmin/footer.ejs")%>s

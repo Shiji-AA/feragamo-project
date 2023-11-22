@@ -1,0 +1,417 @@
+<%-include("../layoutsAdmin/header.ejs")%>
+
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/page-orders-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:33:21 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <title>Evara Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="admin-assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="admin-assets/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+<style>
+    /* Add styles for the entire section */
+/* Body background color */
+body {
+  background-color: #f8f8f8;
+}
+
+/* Add styles for the entire section */
+section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the card container */
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Style for headings */
+h4 {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Style for labels */
+label {
+  font-weight: bold;
+  color: #555;
+}
+
+/* Style for select dropdown */
+select {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  color: #555;
+}
+
+/* Style for status text based on the status value */
+.card-text.pending {
+  color: #007EFF;
+}
+
+.card-text.cancelled {
+  color: #FF3700;
+}
+
+.card-text.delivered {
+  color: #01FF01;
+}
+
+/* Style for product details */
+.product-thumbnail {
+  width: 130px;
+  overflow: hidden;
+}
+
+.product-thumbnail img {
+  max-width: 100%;
+  max-height: 130px;
+}
+
+/* Style for the product details card */
+.product-details-card {
+  background-color: #f0f0f0;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Media query for mobile and tablet responsiveness */
+@media screen and (max-width: 768px) {
+  .col-md-3 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+</style>
+
+<body>
+    <div class="screen-overlay"></div>
+  
+    <main class="main-wrap">
+   
+
+        <!-- <header class="card-header">
+                    <div class="row gx-3">
+                        <div class="col-lg-4 col-md-6 me-auto">
+                            <input type="text" placeholder="Search..." class="form-control">
+                        </div>
+                        <div class="col-lg-2 col-6 col-md-3">
+                            <select class="form-select">
+                                <option>Status</option>
+                                <option>Active</option>
+                                <option>Disabled</option>
+                                <option>Show all</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-6 col-md-3">
+                            <select class="form-select">
+                                <option>Show 20</option>
+                                <option>Show 30</option>
+                                <option>Show 40</option>
+                            </select>
+                        </div>
+                    </div>
+                </header> -->
+
+        <!-- <div class="pagination-area mt-15 mb-50">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-start">
+                        <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                        <li class="page-item"><a class="page-link" href="#">02</a></li>
+                        <li class="page-item"><a class="page-link" href="#">03</a></li>
+                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#">16</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="material-icons md-chevron_right"></i></a></li>
+                    </ul>
+                </nav>
+            </div> -->
+
+
+
+        <section class="h-100 ">
+            <div class="container">
+                <div class="row mt-4">
+                    <div class="row">
+                        <div class="col-md-3">
+                            
+                            <h5>Order Id:</h5>
+                            <span><%= orders.orderId %></span>
+                        </div><br>
+                        <div class="col-md-3 ml-3">
+                            
+                            <h5>Ordered On:</h5>
+                            <span><%= orders.createdOn %> </span>
+                        </div>
+                        <div class="col-md-3 ml-3">
+                            <h5>Delivery Date :</h5>
+                            <span><%= orders.createdOn %> </span>
+                        </div>
+
+                <form action="/admin/updateOrder/?orderId=<%= orders.orderId %>" method="post">
+
+                    <br>
+
+                    <label for="orderStatus">Change Status:</label><br><br>
+                    <div class="col-md-3 d-flex justify-content-end">
+                        <select id="orderStatus" class="custom-select form-select" name="orderStatusOption">
+                            <option value="Delivered" class="delivered">Delivered</option>
+                            <option value="Cancelled" class="cancelled">Cancelled</option>
+                            <option value="Pending" class="pending">Pending</option>
+                            <option value="Shipped" class="shipped">Shipped</option>
+                        </select>
+                    </div>
+                    </div>
+    
+                    <div style="margin-top: 2%; margin-left: 80%;">
+                        <input type="hidden" name="id" value="">
+                        <button type="submit" class="btn btn-primary"><i class="text-muted material-icons md-post_add"></i>update Order</button>
+                    </div>
+                </form>
+                <br>
+                <br>
+
+                <%if(orders.return){%>
+                    
+                    <div class="table-responsive1" style="border: 2px solid red; padding: 10px; border-radius: 5px;">
+                        <table class="table table-hover" >
+                            <thead>
+                                <tr>
+                                 <tbody>
+                                        <th>Return Reason:</th>
+                                        <tr>
+                                            <td style="color: red; font-weight: bold;"><%= orders.returnReason %></td>                                           
+                                        </tr>
+                                        
+                <td>
+                    <form action="/admin/approvereturn/<%= orders._id %>" method="post">
+                          <button class="btn btn-success">Approve</button>
+                      </form>
+                  </td>
+                  <td>
+                      <form action ="/admin/rejectreturn/<%= orders._id %>" method="post">
+                          <button class="btn btn-danger">Reject</button>
+                      </form>
+                  </td>
+  
+
+                                    </tbody>
+                                </tr>
+                            </thead>
+                           
+                        </table>
+                    </div>
+                    <%}%>
+
+
+
+
+
+
+
+
+                    <!-- Card for Address, Order Summary, and Payment Method -->
+                    <div class="card mt-10 mb-30">
+
+                        <div class="pt-20 pb-50 m-10">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4 style="font-weight: bold;">Delivery Address :</h4>
+                                    <br>
+                                    <p class="card-text">
+                                        <%= orders.address.name%>
+                                      <br>
+                                      <%= orders.address.housename%>
+                                            <br>
+                                            <%= orders.address.street%>
+                                                <br>
+                                                <%= orders.address.city%>
+                                                    <br>
+                                                    <%= orders.address.state%>
+                                                <br>
+                                                <%= orders.address.pincode%>
+                                                            
+                                    </p>
+                                </div>
+
+
+
+                                <div class="col-md-3">
+                                    <h4 style="font-weight: bold;">Payment Method: <br><br>
+                                    <p class="card-text">
+                                        <%= orders.paymentMethod %>
+                                
+                                    </p>
+                                </div>
+
+                                <div class="col-md-3">
+                                    
+                                    <h5 class="card-title">Status</h5>
+                                    <p class="card-text"><%=orders.status%></p>
+                                   
+                                </div>
+
+
+                                <!---
+                                <div class="col-md-3">
+                                    <h4 class="card-title " style="font-weight: bold;">Order Status:<%= orders.status%></h4> <br>
+                                
+                                        <p class="card-text " style="color: rgb(0, 132, 255);font-weight: bold;">
+                                            Pending
+                                            
+                                        </p>
+                                    
+                                            <p class="card-text" style="color: rgb(255, 55, 0);font-weight: bold;">
+                                                Cancelled
+                                                
+                                            </p>
+                            
+                                                <p class="card-text" style="color: rgb(0, 255, 191); font-weight: bold;">
+                                                    Shipped
+                                    
+                                                </p>
+                                    
+                                                    <p class="card-text" style="color: rgb(0, 255, 30); font-weight: bold;">
+                                                        Delivered
+                                                
+                                                    </p>
+                                        
+                                </div> -->
+
+
+
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <h4 class="card-title" style="font-weight: bold;">Order Summary</h4>
+                                    </div> <br>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p>Subtotal</p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p> : ₹ <%= orders.totalAmount %>.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p>Shipping</p>
+                                        </div>
+                                        <div class="col-md-8 ">
+                                            <p> :0</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p>
+                                            <h5>Total</h5>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p>
+                                            <h5> :₹ <%= orders.totalAmount %>.00</h5>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="font-weight: bold;">Product Details</h4>
+                    <div class="card mt-30 mb-30">
+                        <%for(let i=0;i< productData.length;i++){%>
+                    
+                            <div class="card mt-5 mb-5" style="background-color: #e4e6e5;">
+                                <div class="pt-2 pb-2 ">
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="container-fluid image product-thumbnail"
+                                                style="width: 130px; overflow: hidden;">
+                                                <%=productData[i].productId.name%>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <h5 class="card-title">
+                                                <img src="/productImages/<%=productData[i].productId.images[0] %>" class="img-fluid" alt="Product 1">
+                    
+                                            </h5>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>Quantity:</label>
+                                            <h5 class="card-title">
+                                                <%= productData[i].quantity %>
+                                            </h5>
+                                        <%}%></div>
+
+
+                                        <div class="col-md-3">
+                                            <label>Subtotal:</label>
+                                            <h5 class="card-title">₹ <%= orders.totalAmount %>.00
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    
+
+
+                                </div>
+                            </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                    document.write(new Date().getFullYear())
+                    </script> ©, Denim Stores  .
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="admin-assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="admin-assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="admin-assets/js/vendors/select2.min.js"></script>
+    <script src="admin-assets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="admin-assets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="admin-assets/js/main.js" type="text/javascript"></script>
+    <%-include("../layoutsAdmin/footer.ejs")%>

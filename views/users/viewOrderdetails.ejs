@@ -1,0 +1,386 @@
+<%-include("../layouts/header.ejs")%>
+
+    <!-- MODAL -->
+
+    <div class="modal fade" id="returnReasonModal" tabindex="-1" role="dialog" aria-labelledby="returnReasonModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="returnModalLabel">Looking for Return?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Create a form to select a reason for return -->
+                    <form id="returnReasonForm">
+                        <div class="form-group">
+                            <label for="returnReason">Please tell us why you want to Return</label>
+                            <select class="form-control" id="returnReason" name="returnReason">
+                                <option value="Wrong Item Delivered">Wrong Item Delivered</option>
+                                <option value="Damaged or Defective Product">Damaged or Defective Product</option>
+                                <option value="Size or Fit Issue">Size or Fit Issue</option>
+                                <option value="Changed My Mind">Changed My Mind</option>
+                                <option value="Late Delivery">Late Delivery</option>
+                                <!-- Add more reasons here as additional <option> elements -->
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="confirmReturn">Confirm Return</button>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+
+    <!-- MODAL ENDS -->
+
+
+    <header class="header-area header-style-1 header-height-2">
+        <div class="header-top header-top-ptb-1 d-none d-lg-block">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-4">
+                        <div class="header-info">
+                            <ul>
+
+                                <li><i class="fi-rs-marker"></i><a href="page-contact.html">Our location</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-4">
+                        <div class="text-center">
+                            <div id="news-flash" class="d-inline-block">
+                                <ul>
+                                    <li>Get great devices up to 50% off <a href="shop-grid-right.html">View details</a>
+                                    </li>
+                                    <li>Supper Value Deals - Save more with coupons</li>
+                                    <li>Trendy 25silver jewelry, save up 35% off today <a
+                                            href="shop-grid-right.html">Shop now</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4">
+                        <div class="header-info header-info-right">
+                            <ul>
+
+                                <li><i class="fi-rs-user"></i><a href="/login">Log In / Sign Up</a></li>
+                                <li><i class="fi-rs-user"></i><a href="/logout">Log Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+            <div class="container">
+                <div class="header-wrap">
+                    <div class="logo logo-width-1">
+                        <a href=""><img src="assets/imgs/theme/feragamo.jpg" alt="logo"></a>
+                    </div>
+                    <div class="header-right">
+                        <div class="search-style-2">
+                            <!--  -->
+                        </div>
+                        <div class="header-action-right">
+                            <div class="header-action-2">
+                                <div class="header-action-icon-2">
+                                    <a href="">
+                                        <img class="svgInject" alt="Evara" src="assets/imgs/theme/icons/icon-heart.svg">
+                                        <span class="pro-count blue">4</span>
+                                    </a>
+                                </div>
+                                <div class="header-action-icon-2">
+                                    <a class="" href="shop-cart.html">
+                                        <img alt="Evara" src="assets/imgs/theme/icons/icon-cart.svg">
+                                        <span class="pro-count blue">2</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom header-bottom-bg-color sticky-bar">
+            <div class="container">
+                <div class="header-wrap header-space-between position-relative">
+                    <div class="logo logo-width-1 d-block d-lg-none">
+                        <a href="index.html"><img src="assets/imgs/theme/feragamo.jpg" alt="logo"></a>
+                    </div>
+                    <div class="header-nav d-none d-lg-flex">
+                        <div class="main-categori-wrap d-none d-lg-block">
+                            <a class="categori-button-active" href="#">
+                                <span class="fi-rs-apps" href="/home"></span> Browse Categories
+                            </a>
+
+                        </div>
+                        <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
+                            <nav>
+                                <ul>
+                                    <li><a class="active" href="/home">Home </i></a>
+
+                                    </li>
+                                    <li>
+                                        <a href="/home">All Categories</a>
+                                    </li>
+                                    <li><a href="/men">Men </i></a></li>
+                                    <li class="position-static"><a href="/woman">Woman</i></a>
+
+
+                                    </li>
+                                    <li><a href="">Contact</i></a>
+
+                                    </li>
+                                    <li><a href="">About US </i></a>
+
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="hotline d-none d-lg-block">
+                        <p><i class="fi-rs-headset"></i><span>Hotline</span>123456789 </p>
+                    </div>
+                    <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%
+                    </p>
+                    <div class="header-action-right d-block d-lg-none">
+                        <div class="header-action-2">
+                            <div class="header-action-icon-2">
+                                <a href="shop-wishlist.html">
+                                    <img alt="Evara" src="assets/imgs/theme/icons/icon-heart.svg">
+                                    <span class="pro-count white">1</span>
+                                </a>
+                            </div>
+                            <div class="header-action-icon-2">
+                                <a class="mini-cart-icon" href="shop-cart.html">
+                                    <img alt="Evara" src="assets/imgs/theme/icons/icon-cart.svg">
+                                    <span class="pro-count white">2</span>
+                                </a>
+                            </div>
+                            <div class="header-action-icon-2 d-block d-lg-none">
+                                <div class="burger-icon burger-icon-white">
+                                    <span class="burger-icon-top"></span>
+                                    <span class="burger-icon-mid"></span>
+                                    <span class="burger-icon-bottom"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="h-100 ">
+            <div class="container">
+                <div class="row mt-4">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h4>Order Id:<%=orders.orderId%>
+                            </h4>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>Ordered Date: <%=orders.createdOn%>
+                                    </h4>
+                                    <%if(orders.status==="Delivered"){%>
+                                        <h5>Delivery Date :
+                                        </h5>
+                                        <%}else{%>
+                                            <h5>Delivery Date : Within 5 days!!!</h5>
+                                            <%}%>
+                    </div>
+
+                    <div class="col-md-2">
+                        <% if (orders.status !== "Cancelled" && orders.status !== "Delivered") { %>
+                            <a href="/cancelOrder/?id=<%= orders._id %>"
+                                onclick="return confirmCancel('/cancelOrder/?id=<%= orders._id %>')">
+                                <button class="btn" id="cancelOrderButton">Cancel Order</button>
+                            </a>
+                        <% } %>
+                    
+                        <!-- Order Return -->
+                        <% if (orders.status === "Delivered") { %>
+                            <% if (!orders.return) { %>                                 
+                                <button class="btn" id="requestReturnButton">Request Return</button>
+                                <h5 id="returnPlacedMessage" style="display:none; color: blue;">Return order placed</h5>                              
+                            <% } else { %>
+                              <p><%= orders.returnStatus %></p>
+                                <!-- Add console log for debugging -->
+                                <script>
+                                    console.log("Condition not met:", '<%= orders.returnStatus %>');
+                                </script>
+                            <% } %>
+                        <% } %>
+                    </div>
+                    
+                    
+                    </div>
+                    <!-- Card for Address, Order Summary, and Payment Method -->
+                    <div class="card mt-10 mb-30">
+
+                        <div class="pt-20 pb-50 m-10">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div>
+                                        <h5 class="card-title">Delivery Address</h5>
+                                    </div>
+                                    <p class="card-text">
+                                        <%=orders.address.name%><br>
+                                            <%=orders.address.housename%>,<br>
+                                                <%=orders.address.street%>,<br>
+                                                    <%=orders.address.city%>,<br>
+                                                        <%=orders.address.state%> <br>
+                                                            <%=orders.address.pincode%>
+                                    </p>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <h5 class="card-title">Payment Method</h5>
+                                    <p class="card-text">
+                                        <%=orders.paymentMethod %>
+                                    </p>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <h5 class="card-title">Status</h5>
+
+                                    <p class="
+                                    <% 
+                                        if (orders.status === 'Shipped') {
+                                            %>status-shipped<%
+                                        } else if (orders.status === 'Delivered') {
+                                            %>status-delivered<%
+                                        } else if (orders.status === 'Pending') {
+                                            %>status-pending<%
+                                        } else if (orders.status === 'Cancelled') {
+                                            %>status-cancelled<%
+                                        }
+                                    %>"
+                                ><%= orders.status %></p>
+
+                                </div>
+
+
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <h5 class="card-title">Order Summary</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p>Subtotal</p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p> : ₹<%=orders.totalAmount%>.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p>Shipping</p>
+                                        </div>
+                                        <div class="col-md-8 ">
+                                            <p> : ₹0.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p>
+                                            <h5>Total</h5>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p>
+                                            <h5> : ₹<%=orders.totalAmount%>.00</h5>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- =================================== -->
+                    <h4>Product Details</h4>
+                    <!-- =================================== -->
+                    <div class="card mt-30 mb-30">
+
+
+
+                        <%for(let i=0;i< productData.length;i++){%>
+                            <div class="card mt-5 mb-5" style="background-color: #e4e6e5;">
+                                <div class="pt-2 pb-2 ">
+                                    <div class="row">
+                                        <div class="col-md-3" style="height: 50px;">
+                                            <div class="container-fluid" style="height: 130px; width: 130px;">
+                                                <img src="/productImages/<%=productData[i].productId.images[0]%>"
+                                                    class="img-fluid" alt="Product 1">
+                                                 </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h5 class="card-title">
+                                                <%=productData[i].productId.name%>
+                                            </h5>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h5 class="card-title">
+                                                <%=productData[i].quantity%>
+                                            </h5>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h5 class="card-title">
+                                                <%=productData[i].subtotal%>
+                                            </h5>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <%}%>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<script>
+
+    $(document).ready(function() {
+    $('#requestReturnButton').on('click', function () {
+        $('#returnReasonModal').modal('show');
+    });
+
+    $('#confirmReturn').on('click', function () {
+        $('#returnReasonModal').modal('hide');
+        var selectedReason = document.getElementById('returnReason').value;
+
+        $.ajax({
+            type: "POST",
+            url: "/requestReturn/<%= orders._id %>/",
+            data: { selectedReason: selectedReason },
+            success: function (response) {
+                $('#requestReturnButton').hide();
+                $('#returnPlacedMessage').show();
+                window.location.href = '/viewOrderdetails?orderId=<%= orders._id %>';
+            },
+            error: function (error) {
+                console.log("Ajax Error:", error);
+            }
+        });
+    });
+});
+</script>
+
+
+<%-include("../layouts/footer.ejs")%>

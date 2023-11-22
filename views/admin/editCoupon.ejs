@@ -1,0 +1,182 @@
+
+<%-include("../layoutsAdmin/header.ejs")%>
+<aside class="navbar-aside" id="offcanvas_aside">
+    <div class="aside-top">
+        <a href="index.html" class="brand-wrap">
+            <img src="/admin-assets/imgs/theme/feragamo.jpg" class="logo" alt="Dashboard">
+        </a>
+        <div>
+            <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+        </div>
+    </div>
+    <nav>
+        <ul class="menu-aside">
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/Dashboard"> <i class="icon material-icons md-home"></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/products"> <i class="icon material-icons md-shopping_bag"></i>
+                    <span class="text">Products</span>
+                </a>
+           </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/ordersPagination"> <i class="icon material-icons md-shopping_cart"></i>
+                    <span class="text">Orders</span>
+                </a>
+           </li>
+
+           <li class="menu-item ">
+            <a class="menu-link" href="/admin/dashboard/users"> <i class="icon material-icons md-shopping_bag"></i>
+                <span class="text">Users</span>
+            </a>
+       </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/categories"> <i class="icon material-icons md-add_box"></i>
+                    <span class="text">Category</span>
+                </a>
+                </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/salesreport"> <i class="icon material-icons md-comment"></i>
+                    <span class="text">Sales Report</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link"  href="/admin/dashboard/offer"> <i class="icon material-icons md-pie_chart"></i>
+                    <span class="text">Offer Management</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link"  href="/admin/dashboard/coupon"> <i class="icon material-icons md-pie_chart"></i>
+                    <span class="text">Manage coupon</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="/admin/dashboard/banner"> <i class="icon material-icons md-local_offer"></i>
+                    <span class="text"> Banner Management</span>
+                </a>
+            </li>
+        </ul>
+        
+        <br>
+        <br>
+    </nav>
+</aside>
+<main class="main-wrap">
+
+      <header class="main-header navbar">
+            <div class="col-search">
+              <a href="/admin/logout" class="btn btn-primary"></i>Log Out</a>
+            </div>
+     </header>
+
+
+<section class="content-main">
+
+
+    
+    <div class="row">
+        <div class="col-9">
+            <div class="content-header">
+                <h2 class="content-title">Edit Coupon Details</h2>
+                <div>
+
+                </div>
+            </div>
+            <% if (typeof message !=="undefined" ) { %>
+                <p style="color:red" id="errormsg">
+                    <%= message %>
+                </p>
+                <% } %>
+        </div>
+        <div class="col-lg-12">
+            <div class="card mb-4">               
+                <div class="card-body">
+
+
+
+                    
+                        <form action="/updateCoupon/?couponId=<%=couponDetails._id%>%>" method="post">
+                        <div class="mb-4">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="couponCode" class="form-label">Coupon Code</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="couponCode" name="couponCode" value="<%= couponDetails.couponCode %>">
+
+                                    <div style="color: red;" id="couponCodeError"></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="couponDescription" class="form-label">Coupon Description</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="couponDescription" name="couponDescription" value="<%= couponDetails.couponDescription %>">
+                                    
+                                        <div id="couponDescriptionError" style="color: red;"></div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label for="couponDiscount" class="form-label">Discount</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="couponDiscount" name="couponDiscount" value="<%= couponDetails.couponDiscount %>">
+                                    
+                                        <div id="couponDiscountError" style="color: red;"></div>
+                                </div>
+
+                             <div class="col-lg-4">                                
+                           <% var expiryDate = new Date(couponDetails.couponExpiry)%>
+                           <%var formatted = expiryDate.toISOString().split('T')[0] %>
+                                <label for="couponExpiry" class="form-label">Expiry</label>
+                               
+                                <input type="date" placeholder="Type here" class="form-control"
+                                    id="couponExpiry" name="couponExpiry" value="<%= formatted %>">
+                                    <div id="couponExpiryError" style="color: red;"></div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label for="maximumAmount" class="form-label">Max Discount Amount</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="maximumAmount" name="maximumAmount" value="<%= couponDetails.maximumAmount%>">
+                                   
+                                        <div id="maximumAmountError" style="color: red;"></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="minimumAmount" class="form-label">Min Purchase Amount</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="minimumAmount" name="minimumAmount" value="<%= couponDetails.minimumAmount %>">
+                                  
+                                        <div id="minimumAmountError" style="color: red;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary"  onclick="return validateCouponForm() "><i
+                                    class="text-muted material-icons md-post_add" ></i>Update</button>
+                        </div>                        
+                    </form>
+
+
+
+                </div>
+            </div> <!-- card end// -->
+
+
+
+
+
+
+            <footer class="main-footer font-xs">
+                <div class="row pb-30 pt-15">
+                            <div class="col-sm-6">
+                                <script>
+                                document.write(new Date().getFullYear())
+                                </script> ©, Evara - HTML Ecommerce Template .
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end">
+                                    All rights reserved
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+
+
+<script src="/admin-assets/js/validationCoupon.js"></script>
+
+<%-include("../layoutsAdmin/footer.ejs")%>
+           

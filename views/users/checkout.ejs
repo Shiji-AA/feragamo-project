@@ -1,0 +1,934 @@
+﻿<%-include("../layouts/header.ejs")%>
+
+
+
+
+    <div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="returnReasonModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="returnModalLabel">Available coupons!!!</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+                </div>
+                <div class="modal-body">
+                    <!-- Create a form to select a reason for return -->
+                    <div class="form-group">
+                        <div class="coupon-container">
+                            <p id="couponCode" name="couponCode"></p>
+                            <p id="couponDiscount" name="couponDiscount"> </p>
+                            <p id="minimumAmount" name="minimumAmount"> </p>
+                            <p id="couponExpiry" name="couponExpiry"> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" id="confirmReturn">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <header class="header-area header-style-1 header-height-2">
+        <div class="header-top header-top-ptb-1 d-none d-lg-block">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-4">
+                        <div class="header-info">
+                            <ul>
+
+                                <li><i class="fi-rs-marker"></i><a href="page-contact.html">Our location</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-4">
+                        <div class="text-center">
+                            <div id="news-flash" class="d-inline-block">
+                                <ul>
+                                    <li>Get great devices up to 50% off <a href="shop-grid-right.html">View details</a>
+                                    </li>
+                                    <li>Supper Value Deals - Save more with coupons</li>
+                                    <li>Trendy 25silver jewelry, save up 35% off today <a
+                                            href="shop-grid-right.html">Shop now</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4">
+                        <div class="header-info header-info-right">
+                            <ul>
+                                <li></i><a href="/myProfile">My Profile</a></li>
+                                <li><i class="fi-rs-user"></i><a href="/login">Log In / Sign Up</a></li>
+                                <li><i class="fi-rs-user"></i><a href="/logout">Log Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+            <div class="container">
+                <div class="header-wrap">
+                    <div class="logo logo-width-1">
+                        <a href=""><img src="assets/imgs/theme/feragamo.jpg" alt="logo"></a>
+                    </div>
+                    <div class="header-right">
+                        <div class="search-style-2">
+                            <!--  -->
+                        </div>
+                        <div class="header-action-right">
+                            <div class="header-action-2">
+                                <div class="header-action-icon-2">
+                                    <a href="">
+                                        <img class="svgInject" alt="Evara" src="assets/imgs/theme/icons/icon-heart.svg">
+                                        <span class="pro-count blue">4</span>
+                                    </a>
+                                </div>
+                                <div class="header-action-icon-2">
+                                    <a class="" href="/addTocart">
+                                        <img alt="Evara" src="assets/imgs/theme/icons/icon-cart.svg">
+                                        <span class="pro-count blue">2</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom header-bottom-bg-color sticky-bar">
+            <div class="container">
+                <div class="header-wrap header-space-between position-relative">
+                    <div class="logo logo-width-1 d-block d-lg-none">
+                        <a href="index.html"><img src="assets/imgs/theme/logo.svg" alt="logo"></a>
+                    </div>
+                    <div class="header-nav d-none d-lg-flex">
+                        <div class="main-categori-wrap d-none d-lg-block">
+                            <a class="categori-button-active" href="#">
+                                <span class="fi-rs-apps" href="/home"></span> Browse Categories
+                            </a>
+
+                        </div>
+                        <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
+                            <nav>
+                                <ul>
+                                    <li><a class="active" href="/home">Home </i></a>
+
+                                    </li>
+                                    <li>
+                                        <a href="/home">All Categories</a>
+                                    </li>
+                                    <li><a href="/men">Men </i></a></li>
+                                    <li class="position-static"><a href="/woman">Woman</i></a>
+
+
+                                    </li>
+                                    <li><a href="">Contact</i></a>
+
+                                    </li>
+                                    <li><a href="">About US </i></a>
+
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="hotline d-none d-lg-block">
+                        <p><i class="fi-rs-headset"></i><span>Hotline</span>123456789 </p>
+                    </div>
+                    <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%
+                    </p>
+                    <div class="header-action-right d-block d-lg-none">
+                        <div class="header-action-2">
+                            <div class="header-action-icon-2">
+                                <a href="shop-wishlist.html">
+                                    <img alt="Evara" src="assets/imgs/theme/icons/icon-heart.svg">
+                                    <span class="pro-count white">1</span>
+                                </a>
+                            </div>
+                            <div class="header-action-icon-2">
+                                <a class="mini-cart-icon" href="shop-cart.html">
+                                    <img alt="Evara" src="assets/imgs/theme/icons/icon-cart.svg">
+                                    <span class="pro-count white">2</span>
+                                </a>
+                            </div>
+                            <div class="header-action-icon-2 d-block d-lg-none">
+                                <div class="burger-icon burger-icon-white">
+                                    <span class="burger-icon-top"></span>
+                                    <span class="burger-icon-mid"></span>
+                                    <span class="burger-icon-bottom"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header ends Here -->
+
+    <!-- Button to trigger the modal -->
+    <button class="btn" id="addAddressBtn" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+        <span>+</span> Add a new Address
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="addAddressModal" tabindex="-1" role="dialog" aria-labelledby="addAddressModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAddressModalLabel">Add Address</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form for adding address -->
+                    <form action="/instantAddAddress" method="POST" id="addressForm">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                                    <label>Name <span class="required">*</span></label>
+                                    <input required="" class="form-control square" value="" name="name" id="name"
+                                        type="text">
+                                </div>
+                                <div class="mb-4">
+                                    <label>House Name <span class="required"></span>*</label>
+                                    <input required="" class="form-control square" value="" name="housename"
+                                        id="housename" type="text">
+                                </div>
+                                <div class="mb-4">
+                                    <label>Street<span class="required"></span>*</label>
+                                    <input required="" class="form-control square" value="" name="street" id="street"
+                                        type="text">
+                                </div>
+                                <div class="mb-4">
+                                    <label>City<span class="required"></span>*</label>
+                                    <input required="" class="form-control square" value="" name="city" id="city"
+                                        type="text">
+                                </div>
+                                <div class="mb-4">
+                                    <label>State<span class="required"></span>*</label>
+                                    <input required="" class="form-control square" value="" name="state" id="state"
+                                        type="text">
+                                </div>
+                                <div class="mb-4">
+                                    <label>Pin Code<span class="required"></span>*</label>
+                                    <input required="" class="form-control square" value="" name="pincode" id="pincode"
+                                        type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" onclick="return validateForm()">Use this
+                            Address</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="mobile-header-active mobile-header-wrapper-style">
+        <div class="mobile-header-wrapper-inner">
+            <div class="mobile-header-top">
+                <div class="mobile-header-logo">
+                    <a href="index.html"><img src="assets/imgs/theme/logo.svg" alt="logo"></a>
+                </div>
+                <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
+                    <button class="close-style search-close">
+                        <i class="icon-top"></i>
+                        <i class="icon-bottom"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mobile-header-content-area">
+                <div class="mobile-search search-style-3 mobile-header-border">
+                    <form action="#">
+                        <input type="text" placeholder="Search for items…">
+                        <button type="submit"><i class="fi-rs-search"></i></button>
+                    </form>
+                </div>
+                <div class="mobile-menu-wrap mobile-header-border">
+                    <div class="main-categori-wrap mobile-header-border">
+                        <a class="categori-button-active-2" href="#">
+                            <span class="fi-rs-apps"></span> Browse Categories
+                        </a>
+                        <div class="categori-dropdown-wrap categori-dropdown-active-small">
+                            <ul>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-dress"></i>Women's Clothing</a>
+                                </li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-tshirt"></i>Men's Clothing</a>
+                                </li>
+                                <li> <a href="shop-grid-right.html"><i class="evara-font-smartphone"></i> Cellphones</a>
+                                </li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-desktop"></i>Computer &
+                                        Office</a></li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-cpu"></i>Consumer
+                                        Electronics</a></li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-home"></i>Home & Garden</a></li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-high-heels"></i>Shoes</a></li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-teddy-bear"></i>Mother &
+                                        Kids</a></li>
+                                <li><a href="shop-grid-right.html"><i class="evara-font-kite"></i>Outdoor fun</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- mobile menu start -->
+
+
+                    <!-- mobile menu end -->
+                </div>
+                <div class="mobile-header-info-wrap mobile-header-border">
+                    <div class="single-mobile-header-info mt-30">
+                        <a href="page-contact.html"> Our location </a>
+                    </div>
+                    <div class="single-mobile-header-info">
+                        <a href="page-login-register.html">Log In / Sign Up </a>
+                    </div>
+                    <div class="single-mobile-header-info">
+                        <a href="#">(+01) - 2345 - 6789 </a>
+                    </div>
+                </div>
+                <div class="mobile-social-icon">
+                    <h5 class="mb-15 text-grey-4">Follow Us</h5>
+                    <a href="#"><img src="assets/imgs/theme/icons/icon-facebook.svg" alt=""></a>
+                    <a href="#"><img src="assets/imgs/theme/icons/icon-twitter.svg" alt=""></a>
+                    <a href="#"><img src="assets/imgs/theme/icons/icon-instagram.svg" alt=""></a>
+                    <a href="#"><img src="assets/imgs/theme/icons/icon-pinterest.svg" alt=""></a>
+                    <a href="#"><img src="assets/imgs/theme/icons/icon-youtube.svg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="main">
+
+        <section class="mt-50 mb-50">
+            <form method="POST" action="/confirmOrder" id="confirmOrder">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-25">
+                                <h4>Billing Details</h4>
+                            </div>
+
+                            <!-- Place Order Form starts Here -->
+
+                            <div class="form-group">
+                                <% for (let i=0; i < addresses.length; i++) { %>
+                                    <div class="address"
+                                        style="box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); padding: 10px; margin-bottom: 10px;">
+                                        <input type="radio" name="address" id="address_<%= i %>"
+                                            value="<%= addresses[i]._id %>" style="width: 15px; height: 16px;" <% if
+                                            (i===0) { %> checked <% } %>
+                                            >
+
+                                            <div>Name: <%= addresses[i].name %>
+                                            </div>
+                                            <div>House Name: <%= addresses[i].housename %>
+                                            </div>
+                                            <div>Street: <%= addresses[i].street %>
+                                            </div>
+                                            <div>City: <%= addresses[i].city %>
+                                            </div>
+                                            <div>State: <%= addresses[i].state %>
+                                            </div>
+                                            <div>Pincode: <%= addresses[i].pincode %>
+                                            </div><br>
+                                    </div>
+                                    <% } %>
+                            </div>
+
+
+                        </div>
+
+                        <!-- Your Orders starts here -->
+
+                        <div class="col-md-6">
+                            <div class="order_review">
+                                <div class="mb-20">
+                                    <h4>Your Orders</h4>
+                                </div>
+                                <div class="table-responsive order_table text-center">
+                                    <table class="table">-
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2">Product</th>
+                                                <th>Qty</th>
+                                                <th>Total</th>
+                                                <th>SubTotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (const item of userCart.cart) { %>
+                                                <tr>
+                                                    <td class="image product-thumbnail">
+                                                        <% if (item.productId.images) { %>
+                                                            <img src="/productImages/<%= item.productId.images[0] %>"
+                                                                alt="image">
+                                                            <% } %>
+                                                    </td>
+                                                    <td class="product-des product-name">
+                                                        <h5 class="product-name"><a href="#">
+                                                                <%= item.productId.name %>
+                                                            </a></h5>
+                                                    </td>
+                                                    <td class="price" data-title="Price">
+                                                        <span>
+                                                            <%= item.quantity %>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="price" data-title="Price">
+                                                        <span>₹<%= item.subtotal %></span>
+                                                    </td>
+
+                                                    <% var total=item.quantity * item.subtotal; %>
+                                                        <td class="product-subtotal" colspan="2">₹ <%= total %>
+                                                        </td>
+
+                                                        <%}%>
+
+                                                </tr>
+                                                </td>
+                                                <tr>
+                                                </tr>
+                                                <tr>
+                                                    <th><strong>Total</strong></th>
+                                                    <% var cartTotal=0; %>
+
+                                                        <% for (const item of userCart.cart) { %>
+                                                            <% cartTotal +=(item.quantity * item.subtotal); %>
+                                                                <% } %>
+                                                                    <% const cartTotal2=cartTotal; %>
+                                                                        <td colspan="5" class="product-subtotal"><span
+                                                                                class="font-xl text-brand fw-900">
+                                                                                <%= cartTotal2 %>
+                                                                            </span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Diwali special discount</th>
+                                                    <td id="offerPrice" class="product-subtotal" colspan="5">
+                                                        <% var discountAmt=(cartTotal2
+                                                            *(offers[0].offerDiscount/100)).toFixed(2); %>
+                                                            <span>-</span>
+                                                            <%= discountAmt %>, <span>
+                                                                    <%= offers[0].offerDiscount %>
+                                                                </span> % Off
+                                                    </td>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th><strong>offerPrice</strong></th>
+                                                    <td colspan="5" id=""><em>
+                                                            <%= cartTotal2-discountAmt %>
+                                                        </em></td>
+                                                </tr>
+                                                <tr>
+
+                                                <tr>
+                                                    <th> Coupon</th>
+                                                    <td colspan="5" id="discount1" name="discount">
+                                                        <span>-</span><em></em>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Shipping</th>
+                                                    <td colspan="5"><em>Free Shipping</em></td>
+                                                </tr>
+                                                <th><strong>Total Amount Payable</strong></th>
+                                                <td colspan="5" id="cartTotal"><em></em></td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+                                <div class="payment_method">
+                                    <div class="mb-25">
+                                        <h5>Payment</h5>
+                                    </div>
+                                    <div class="payment_option">
+                                        <div class="custome-radio">
+                                            <input class="form-check-input" type="radio" name="payment_option"
+                                                id="CashOnDelivery" value="Cash On Delivery">
+                                            <label class="form-check-label" for="CashOnDelivery"
+                                                data-bs-toggle="collapse" data-target="#bankTranfer"
+                                                aria-controls="bankTranfer">Cash On Delivery</label>
+                                            <br>
+                                            <input class="form-check-input" type="radio" name="payment_option"
+                                                id="Razorpay" value="Razorpay" checked>
+                                            <label class="form-check-label" for="Razorpay" data-bs-toggle="collapse"
+                                                data-target="#bankTranfer" aria-controls="bankTranfer">Razorpay</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <button class="btn btn-fill-out btn-block mt-30" type="submit"
+                                    id="placeOrderButton">Place Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Place Order Form ends Here -->
+
+            <!---  Coupon STARTS HERE -->
+            <div class="col-lg-6">
+                <div class="toggle_info">
+                    <span><i class="fi-rs-label mr-10"></i><span class="text-muted">Have a coupon?</span>
+                        <a href="#coupon" data-bs-toggle="collapse" class="collapsed" aria-expanded="false">Click here
+                            to enter your code</a></span>
+                </div>
+                <div class="panel-collapse collapse coupon_form " id="coupon">
+                    <br>
+                    <!-- SHOW COUPONS -->
+
+                    <!-- <button class="show-coupon-button" onclick="openModal()">Show Coupons</button> -->
+                    <div class="panel-body">
+                        <p class="mb-30 font-sm">If you have a coupon code, please apply it below.</p>
+
+                        <form method="post" action href="">
+                            <div class="form-group">
+                                <input type="text" id="couponCode" placeholder="Enter Coupon Code...">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn  btn-md" id="applyCoupon" name="login">Apply Coupon</button>
+
+                            </div>
+                        </form>
+                        <button class="btn" id="couponButton">Show Coupons</button>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!---  Coupon ENDS HERE -->
+
+
+
+            </div>
+
+            <!-- Your Orders Ends here -->
+
+            </div>
+            </div>
+            </div>
+
+        </section>
+    </main>
+
+
+
+
+
+
+    <!-- Footer Starts Here -->
+
+    <footer class="main">
+        <section class="newsletter p-30 text-white wow fadeIn animated">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 mb-md-3 mb-lg-0">
+                        <div class="row align-items-center">
+                            <div class="col flex-horizontal-center">
+                                <img class="icon-email" src="assets/imgs/theme/icons/icon-email.svg" alt="">
+                                <h4 class="font-size-20 mb-0 ml-3">Sign up to Newsletter</h4>
+                            </div>
+                            <div class="col my-4 my-md-0 des">
+                                <h5 class="font-size-15 ml-4 mb-0">...and receive <strong>$25 coupon for first
+                                        shopping.</strong></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <!-- Subscribe Form -->
+                        <form class="form-subcriber d-flex wow fadeIn animated">
+                            <input type="email" class="form-control bg-white font-small" placeholder="Enter your email">
+                            <button class="btn bg-dark text-white" type="submit">Subscribe</button>
+                        </form>
+                        <!-- End Subscribe Form -->
+                    </div>
+                </div>
+            </div>
+
+
+
+        </section>
+        <section class="section-padding footer-mid">
+            <div class="container pt-15 pb-20">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="widget-about font-md mb-md-5 mb-lg-0">
+                            <div class="logo logo-width-1 wow fadeIn animated">
+                                <a href="index.html"><img src="assets/imgs/theme/logo.svg" alt="logo"></a>
+                            </div>
+                            <h5 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Contact</h5>
+                            <p class="wow fadeIn animated">
+                                <strong>Address: </strong>562 Wellington Road, Street 32, San Francisco
+                            </p>
+                            <p class="wow fadeIn animated">
+                                <strong>Phone: </strong>+01 2222 365 /(+91) 01 2345 6789
+                            </p>
+                            <p class="wow fadeIn animated">
+                                <strong>Hours: </strong>10:00 - 18:00, Mon - Sat
+                            </p>
+                            <h5 class="mb-10 mt-30 fw-600 text-grey-4 wow fadeIn animated">Follow Us</h5>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <h5 class="widget-title wow fadeIn animated">About</h5>
+                        <ul class="footer-list wow fadeIn animated mb-sm-5 mb-md-0">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Delivery Information</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms &amp; Conditions</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Support Center</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2  col-md-3">
+                        <h5 class="widget-title wow fadeIn animated">My Account</h5>
+                        <ul class="footer-list wow fadeIn animated">
+                            <li><a href="#">Sign In</a></li>
+                            <li><a href="#">View Cart</a></li>
+                            <li><a href="#">My Wishlist</a></li>
+                            <li><a href="#">Track My Order</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Order</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="widget-title wow fadeIn animated">Install App</h5>
+                        <div class="row">
+                            <div class="col-md-8 col-lg-12">
+                                <p class="wow fadeIn animated">From App Store or Google Play</p>
+                                <div class="download-app wow fadeIn animated">
+                                    <a href="#" class="hover-up mb-sm-4 mb-lg-0"><img class="active"
+                                            src="assets/imgs/theme/app-store.jpg" alt=""></a>
+                                    <a href="#" class="hover-up"><img src="assets/imgs/theme/google-play.jpg"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-12 mt-md-3 mt-lg-0">
+                                <p class="mb-20 wow fadeIn animated">Secured Payment Gateways</p>
+                                <img class="wow fadeIn animated" src="assets/imgs/theme/payment-method.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container pb-20 wow fadeIn animated">
+            <div class="row">
+                <div class="col-12 mb-20">
+                    <div class="footer-bottom"></div>
+                </div>
+                <div class="col-lg-6">
+                    <p class="float-md-left font-sm text-muted mb-0">&copy; 2021, <strong
+                            class="text-brand">Evara</strong> - HTML Ecommerce Template </p>
+                </div>
+                <div class="col-lg-6">
+                    <p class="text-lg-end text-start font-sm text-muted mb-0">
+                        Designed by <a href="http://alithemes.com/" target="_blank">Alithemes.com</a>. All rights
+                        reserved
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="text-center">
+                    <h5 class="mb-5">Now Loading</h5>
+                    <div class="loader">
+                        <div class="bar bar1"></div>
+                        <div class="bar bar2"></div>
+                        <div class="bar bar3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor JS-->
+    <script src="assets/js/validationAddaddress.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- ========Razorpay=============== -->
+    <script>
+        $(document).ready(function () {
+            $("#confirmOrder").submit(function (event) {
+                //console.log("order placing started")
+                event.preventDefault(); // Prevent the default form submission
+
+                const selectedPaymentOption = $('input[name ="payment_option"]:checked').attr('id');
+                var formData = $(this).serialize();
+                const couponDiscount=parseFloat($("#discount1").text());
+                console.log("hello"+couponDiscount);
+
+                // Send an AJAX request to the server
+                $.ajax({
+                    type: "POST",
+                    url: "/confirmOrder", // Update the URL to the correct server route
+                    data: { couponDiscount:couponDiscount , paymentMethod: selectedPaymentOption },
+
+                    success: function (response) {
+                       
+                        if (response?.razorpayOrder?.status == "created") {
+                            razorPayment(response.razorpayOrder); // Pass 'order' object to razorPayment function                 
+                        } else {
+
+                            location.href = "/orderPlaced"
+                        }
+                    },
+
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+                function verifyPayment(payment, order) {
+                    $.ajax({
+                        url: '/verify-payment',
+                        data: {
+                            payment: payment,
+                            order: order
+                        },
+                        method: 'POST',
+                        success: function (response) {
+
+                            if (response.orderid) {
+                                window.location.href = '/orderPlaced';
+                            }
+                        },
+                        error: function (error) {
+                            if (error) {
+                                window.location.href = '/errornotfound';
+                            }
+                        }
+                    });
+                }
+                function razorPayment(order) {
+                    console.log((order.amount) / 10000);
+                    var options = {
+                        "key": "rzp_test_7uvjpbUMAVksOW", // Replace with your Razorpay Key ID
+                        "amount": (order.amount) / 10000, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                        "currency": "INR",
+                        "name": "FeraGamo",
+                        "description": "Test Transaction",
+                        "order_id": order.id,
+                        "handler": function (response) {
+
+                            verifyPayment(JSON.stringify(response), JSON.stringify(order));
+                        },
+                        "prefill": {
+                            "name": "Gaurav Kumar",
+                            "email": "gaurav.kumar@example.com",
+                            "contact": "9000090000"
+                        },
+                        "notes": {
+                            "address": "Razorpay Corporate Office"
+                        }
+                    }
+
+                    var rzp1 = new Razorpay(options);
+                    rzp1.on('payment.failed', function (response) {
+                        console.error(response.error.code);
+                        console.error(response.error.description);
+                        console.error(response.error.source);
+                        console.error(response.error.step);
+                        console.error(response.error.reason);
+                        console.error(response.error.metadata.order_id);
+                        console.error(response.error.metadata.payment_id);
+                    });
+                    rzp1.open();
+                }
+            });
+        });
+    </script>
+
+    <!-- Ajax  For Coupon -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        document.getElementById("applyCoupon").addEventListener("click", function (event) {
+            event.preventDefault();
+            var couponCode = document.getElementById("couponCode").value;
+            $.ajax({
+                type: "POST",
+                url: "/applyCoupon",
+                data: { couponCode: couponCode, cartTotal: '<%= cartTotal2-discountAmt %>' },
+                success: function (response) {
+                    if (response.amountTotal) {
+                        $("#cartTotal").text(response.amountTotal);
+                        Swal.fire({
+                            title: "Coupon Applied",
+                            text: "New Grand Total: " + response.amountTotal,
+                            icon: "success",
+                        });
+                        if (response.discount) {
+                            $("#discount1").text(response.discount);
+                        }
+
+
+                    } else if (response.expiry) {
+                        Swal.fire({
+                            title: "Coupon Expired",
+                            text: "The coupon has expired.",
+                            icon: "error",
+                        });
+                    } else if (response.minimumValid) {
+                        Swal.fire({
+                            title: "Minimum Purchase Amount Not Met",
+                            text: "Minimum purchase amount should be maintained.",
+                            icon: "error",
+                        });
+                    } else if (response.noCoupon) {
+                        Swal.fire({
+                            title: "Coupon Not Available",
+                            text: "The coupon is not available.",
+                            icon: "error",
+                        });
+                    } else if (response.alreadyUsed) {
+                        Swal.fire({
+                            title: "Coupon Already Used",
+                            text: "Coupon code has already been used by this customer.",
+                            icon: "error",
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle errors here
+                    console.log("Error: " + error);
+                }
+            });
+        });
+    </script>
+    <script>
+        // Add a click event listener to the "Calculate Amount Payable" button
+        document.getElementById("calculateAmountPayable").addEventListener("click", function (event) {
+            event.preventDefault();
+
+            // Make an Ajax request to calculate the Amount Payable
+            $.ajax({
+                type: "POST",
+                url: "/calculateAmountPayable", // Adjust the URL
+                data: {
+                    total: cartTotal2,  // Replace with your actual TOTAL value
+                    offerPrice: cartTotal2 * (offers[0].offerDiscount / 100),
+                    discount: response.discount  // Replace with your actual DISCOUNT value
+                },
+                success: function (response) {
+                    // Update the "Amount Payable" element with the calculated value
+                    $("#cartTotal").text(response.amountPayable);
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error: " + error);
+                }
+            });
+        });
+    </script>
+    <!-- Ajax  For Coupon ends here -->
+
+    <script>
+        $('#couponButton').on('click', function () {
+            $('#couponModal').modal('show');
+            console.log("Coupon button clicked ");
+
+            // Make an AJAX request to get available coupons
+            $.ajax({
+                type: "GET",
+                url: "/getAvailableCoupons",
+                success: function (response) {
+                    console.log(response, "Available Coupons");
+                    // Process the response and update the modal content
+                    updateCouponModal(response.availableCoupons);
+                }
+            });
+        });
+
+        $('#confirmReturn').on('click', function () {
+            $('#couponModal').modal('hide');
+            // Additional logic if needed
+        });
+
+        function updateCouponModal(coupons) {
+            var couponContainer = $('.coupon-container');
+            couponContainer.empty(); // Clear previous content
+
+            if (coupons.length > 0) {
+                coupons.forEach(function (coupon) {
+                    // Append coupon details with some styling
+                    var couponHtml = '<div class="coupon-details">' +
+                        '<p>Coupon Code: ' + coupon.couponCode + '</p>' +
+                        '<p>Discount: ' + coupon.couponDiscount + '%</p>' +
+                        '<p>Minimum Amount: ' + coupon.minimumAmount + '</p>' +
+                        '<p>Expiry Date: ' + coupon.couponExpiry + '</p>' +
+                        '</div>';
+
+                    couponContainer.append(couponHtml);
+                });
+            } else {
+                // Handle the case when no coupons are available
+                couponContainer.append('<p>No coupons available</p>');
+            }
+
+            // Show the modal after updating the content
+            $('#couponModal').modal('show');
+        }
+
+    </script>
+    </body>
+
+    </html>
+
+
+
+
+
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/plugins/slick.js"></script>
+    <script src="assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="assets/js/plugins/wow.js"></script>
+    <script src="assets/js/plugins/jquery-ui.js"></script>
+    <script src="assets/js/plugins/perfect-scrollbar.js"></script>
+    <script src="assets/js/plugins/magnific-popup.js"></script>
+    <script src="assets/js/plugins/select2.min.js"></script>
+    <script src="assets/js/plugins/waypoints.js"></script>
+    <script src="assets/js/plugins/counterup.js"></script>
+    <script src="assets/js/plugins/jquery.countdown.min.js"></script>
+    <script src="assets/js/plugins/images-loaded.js"></script>
+    <script src="assets/js/plugins/isotope.js"></script>
+    <script src="assets/js/plugins/scrollup.js"></script>
+    <script src="assets/js/plugins/jquery.vticker-min.js"></script>
+    <!-- Template  JS -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/shop.js"></script>
+    <%-include("../layouts/header.ejs")%>

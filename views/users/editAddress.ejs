@@ -1,0 +1,90 @@
+<%-include("../layoutsAdmin/header.ejs")%>
+    <main class="main-wrap">
+
+        <form action="/editAddress?id=<%=addresses._id %>" method="POST" id="myForm">
+
+            <section class="content-main">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="content-header">
+                            <h2 class="content-title">Edit Address</h2>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                
+                                <div class="row">
+                                    <!-- <div class="col-md-3">
+                                        <h6>1. General info</h6>
+                                    </div> -->
+                                    <div class="col-md-9">
+                                        <div class="mb-4">
+                                            <label>Name <span class="required">*</span></label>
+                                            <input required="" class="form-control square" value="<%=addresses.name %>"
+                                                name="name" id="name" type="text">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label>House Name <span class="required"></span>*</label>
+                                            <input required="" class="form-control square"
+                                                value="<%=addresses.housename %>" name="housename" id="housename" type="text">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label>Street<span class="required"></span>*</label>
+                                            <input required="" class="form-control square"
+                                                value="<%=addresses.street %>" name="street" id="street" type="text">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label>City<span class="required"></span>*</label>
+                                            <input required="" class="form-control square" value="<%=addresses.city %>"
+                                                name="city"id="city" type="text">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label>State<span class="required"></span>*</label>
+                                            <input required="" class="form-control square" value="<%=addresses.state %>"
+                                                name="state" id="state"type="text">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label>Pin Code<span class="required"></span>*</label>
+                                            <input required="" class="form-control square"
+                                                value="<%=addresses.pincode %>" name="pincode" id="pincode"type="text">
+                                        </div>
+                                    </div> <!-- col.// -->
+                                </div> <!-- row.// -->
+
+                                <div class="row">
+                                    <!-- <div class="col-md-3">
+                                        <h6>2. Pricing</h6>
+                                    </div> -->
+                                    <div class="col-md-9">
+                                    </div> <!-- col.// -->
+                                </div> <!-- row.// -->
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-md rounded font-sm hover-up" value="submit" type="submit" onclick="return validateForm()" >Update</button>
+                        </div>
+                    </form>
+        <p>
+            <%=(typeof message!=='undefined' )?message:""%>
+        </p>
+        </section> <!-- content-main end// -->
+    </main>
+
+
+    <script src="assets/js/validationEditaddress.js"></script>
+    <script src="assets/js/Validationregister.js"></script>
+    <script src="../admin-assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="../admin-assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="../admin-assets/js/vendors/select2.min.js"></script>
+    <script src="../admin-assets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="../admin-assets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="../admin-assets/js/main.js" type="text/javascript"></script>
+
+
+    <%-include("../layoutsAdmin/footer.ejs")%>

@@ -1,0 +1,248 @@
+
+<%-include("../layoutsAdmin/header.ejs")%>
+<aside class="navbar-aside" id="offcanvas_aside">
+    <div class="aside-top">
+        <a href="index.html" class="brand-wrap">
+            <img src="/admin-assets/imgs/theme/feragamo.jpg" class="logo" alt="Dashboard">
+        </a>
+        <div>
+            <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+        </div>
+    </div>
+    <nav>
+        <ul class="menu-aside">
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/Dashboard"> <i class="icon material-icons md-home"></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/products"> <i class="icon material-icons md-shopping_bag"></i>
+                    <span class="text">Products</span>
+                </a>
+           </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/ordersPagination"> <i class="icon material-icons md-shopping_cart"></i>
+                    <span class="text">Orders</span>
+                </a>
+           </li>
+
+           <li class="menu-item ">
+            <a class="menu-link" href="/admin/dashboard/users"> <i class="icon material-icons md-shopping_bag"></i>
+                <span class="text">Users</span>
+            </a>
+       </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/categories"> <i class="icon material-icons md-add_box"></i>
+                    <span class="text">Category</span>
+                </a>
+                </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/salesreport"> <i class="icon material-icons md-comment"></i>
+                    <span class="text">Sales Report</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link"  href="/admin/dashboard/offer"> <i class="icon material-icons md-pie_chart"></i>
+                    <span class="text">Offer Management</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link"  href="/admin/dashboard/coupon"> <i class="icon material-icons md-pie_chart"></i>
+                    <span class="text">Manage coupon</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="/admin/dashboard/banner"> <i class="icon material-icons md-local_offer"></i>
+                    <span class="text"> Banner Management</span>
+                </a>
+            </li>
+        </ul>
+        
+        <br>
+        <br>
+    </nav>
+</aside>
+<main class="main-wrap">
+
+      <header class="main-header navbar">
+            <div class="col-search">
+              <a href="/admin/logout" class="btn btn-primary"></i>Log Out</a>
+            </div>
+     </header>
+
+
+<section class="content-main">
+
+
+    
+    <div class="row">
+        <div class="col-9">
+            <div class="content-header">
+                <h2 class="content-title">Add New Offer</h2>
+                <div>
+
+                </div>
+            </div>
+            <% if (typeof message !=="undefined" ) { %>
+                <p style="color:red" id="errormsg">
+                    <%= message %>
+                </p>
+                <% } %>
+        </div>
+        <div class="col-lg-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>OFFER DETAILS</h4>
+                    
+                </div>
+                <div class="card-body">
+                    <!-- AddOffer Form starts here -->
+
+                    <form action="/addOffer" method="post" onsubmit="" id="offerForm" name="offerForm" >
+                        <div class="mb-4">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="offerCode" class="form-label">Offer Code</label>
+                                    <input type="text" placeholder="Type here" class="form-control"
+                                        id="offerCode" name="offerCode">
+                                    <div  style="color: red;" id="offerCodeError"></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="offerDescription" class="form-label">offer Description</label>
+                                    <input type="text" placeholder="Type here" class="form-control"
+                                        id="offerDescription" name="offerDescription">
+                                        <div id="offerDescriptionError" style="color: red;"></div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label for="offerDiscount" class="form-label">Discount</label>
+                                    <input type="text" placeholder="Type here" class="form-control"
+                                        id="offerDiscount" name="offerDiscount">
+                                        <div id="offerDiscountError" style="color: red;"></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="offerStartsFrom" class="form-label">Offer Starts From</label>
+                                    <input type="date" placeholder="Type here" class="form-control"
+                                        id="offerStartsFrom" name="offerStartsFrom">
+                                        <div id="offerStartsFromError" style="color: red;"></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="offerExpiry" class="form-label">Expiry</label>
+                                    <input type="date" placeholder="Type here" class="form-control"
+                                        id="offerExpiry" name="offerExpiry">
+                                        <div id="offerExpiryError" style="color: red;"></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="maximumAmount" class="form-label">Max Discount Amount</label>
+                                    <input type="text" placeholder="Type here" class="form-control"
+                                        id="maximumAmount" name="maximumAmount">
+                                        <div id="maximumAmountError" style="color: red;"></div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="minimumAmount" class="form-label">Min Purchase Amount</label>
+                                    <input type="text" placeholder="Type here" class="form-control"
+                                        id="minimumAmount" name="minimumAmount">
+                                        <div id="minimumAmountError" style="color: red;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" onclick="return validateOfferForm()"><i
+                                    class="text-muted material-icons md-post_add" ></i>Add New Offer</button>
+                        </div>
+                    </form>
+
+
+
+                     <!-- AddOffer Form ends here -->
+                </div>
+            </div> <!-- card end// -->
+
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>EXISTING OFFER DETAILS</h4>
+                </div>
+                <table  class="table">
+                    <thead>
+                        <tr>
+                            <th>Sl.No.</th>
+                            <th>Code</th>
+                            <th>Description</th>
+                            <th>Discount</th>
+                            <th>Offer Starts From</th>
+                            <th>Expiry</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for(let i=offerDetails.length-1;i>=0 ;i--){%>
+                        <tr>
+                            <td><%=offerDetails.length - i%></td>
+                            <td><%=offerDetails[i].offerCode%></td>
+                            <td> <% const maxDescriptionLength = 100;
+                                const description = offerDetails[i].offerDescription.length > maxDescriptionLength
+                                     ? offerDetails[i].offerDescription.slice(0, maxDescriptionLength) + '...'
+                                     : offerDetails[i].offerDescription;
+                             %>
+                             <%= description %></td>
+                            <td><%=offerDetails[i].offerDiscount%>%</td>
+
+                            <%const dateTimeStamp= new Date(offerDetails[i].offerStartsFrom)
+                            const offerStartsFrom = dateTimeStamp.toLocaleDateString();%>
+                            <td><%=offerStartsFrom%></td>
+
+                            <%const dateTimeStamp1= new Date(offerDetails[i].offerExpiry)
+                            const expiryDate = dateTimeStamp1.toLocaleDateString();%>
+                            <td><%=expiryDate%></td>
+
+                            <td><a href="/offerManagement/edit/<%=offerDetails[i]._id%>" id="editButton" class="btn btn-success">Edit</a>
+                            <a href="/deleteOffer/<%=offerDetails[i]._id%>" class="btn btn-danger" id="editButton" onclick="" >Delete</a>
+                            
+                            </td>
+                        </tr>
+                        <%}%>
+                        <tbody>
+                        </tr>
+                        
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                               
+                               
+                            </tr>
+                        
+                          
+                        </tbody>
+                    </table>
+                </div> <!-- table-responsive //end -->
+            </div> <!-- card-body end// -->
+        </div> <!-- card end// -->
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer class="main-footer font-xs">
+    <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                    document.write(new Date().getFullYear())
+                    </script> ©, Evara - HTML Ecommerce Template .
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+</section> <!-- content-main end// -->
+
+<script src="/admin-assets/js/validationOffer.js"></script>
+<%-include("../layoutsAdmin/footer.ejs")%>

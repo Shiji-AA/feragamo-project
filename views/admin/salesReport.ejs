@@ -1,0 +1,180 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<!--<script>
+$(document).ready(function () {
+    new DataTable('#example');
+            
+})
+</script>  -->
+
+<%-include("../layoutsAdmin/header.ejs")%>	
+
+
+<div class="screen-overlay"></div>
+<aside class="navbar-aside" id="offcanvas_aside">
+    <div class="aside-top">
+        <a href="index.html" class="brand-wrap">
+            <img src="/admin-assets/imgs/theme/feragamo.jpg" class="logo" alt="Dashboard">
+        </a>
+        <div>
+            <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+        </div>
+    </div>
+    <nav>
+        <ul class="menu-aside">
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/Dashboard"> <i class="icon material-icons md-home"></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/products"> <i class="icon material-icons md-shopping_bag"></i>
+                    <span class="text">Products</span>
+                </a>
+           </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/ordersPagination"> <i class="icon material-icons md-shopping_cart"></i>
+                    <span class="text">Orders</span>
+                </a>
+           </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/users"> <i class="icon material-icons md-person"></i>
+                    <span class="text">Users</span>
+                </a>
+            </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/categories"> <i class="icon material-icons md-add_box"></i>
+                    <span class="text">Category</span>
+                </a>
+                </li>
+            <li class="menu-item ">
+                <a class="menu-link" href="/admin/dashboard/salesreport"> <i class="icon material-icons md-comment"></i>
+                    <span class="text">Sales Report</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link"  href="/admin/dashboard/offer"> <i class="icon material-icons md-pie_chart"></i>
+                    <span class="text">Offer Management</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link"  href="/admin/dashboard/coupon"> <i class="icon material-icons md-pie_chart"></i>
+                    <span class="text">Manage coupon</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="/admin/dashboard/banner"> <i class="icon material-icons md-local_offer"></i>
+                    <span class="text"> Banner Management</span>
+                </a>
+            </li>
+        </ul>
+        
+        <br>
+        <br>
+    </nav>
+</aside>
+
+<main class="main-wrap">
+
+
+    <header class="main-header navbar">
+        <div class="col-search">
+            <a href="/admin/logout" class="btn btn-primary"></i>Log Out</a>
+        </div>
+    </header>
+
+
+<section class="content-main">
+<div class="card mb-4">
+    <header class="card-header" id="header">
+        <h4 class="card-title">Latest orders</h4>
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <form method="post" onsubmit="return validateform()" action="/UpdateOrderByDateForm" id="OrderByDateForm">
+                    <div class="row align-items-center">
+                        <div class="col-md-10 col-6">
+                            <label for="from" class="form-label">From:</label>
+                            <input type="date" class="form-control" id="from" name="orderFrom">
+                            <span id="fromError" style="color: red;"></span>
+                        </div>
+                        <div class="col-md-10 col-6">
+                            <label for="to" class="form-label">To:</label>
+                            <input type="date" class="form-control" id="to" name="orderTo">
+                            <span id="toError" style="color: red;"></span>
+                        </div>
+                        <div class="col-md-6 col-6" style="padding-top: 4%;">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="col-md-2 col-6">
+                <a href="/dailyOrder" id="dailyButton" class="btn btn-primary btn-sm rounded">Daily</a>
+            </div>
+            <div class="col-md-2 col-6">
+                <a href="/weeklyOrder" id="MonthlyButton" class="btn btn-primary btn-sm rounded">Weekly</a>
+            </div>
+            <div class="col-md-2 col-6">
+                <a href="/yearlyOrder" id="YearlyButton" class="btn btn-primary btn-sm rounded">Yearly</a>
+            </div>
+
+
+            <div class="col-md-2 col-6">
+                <a href="/invoiceSales" class="btn btn-primary btn-sm rounded" >InvoiceReport</a>
+                <!-- <button href="#" class="btn btn-primary btn-sm rounded" id="invoice">Invoice</button> -->
+            </div>
+        
+    </header>
+
+
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <div class="table-responsive">
+                <table class="table align-middle table-nowrap mb-0" id="example">
+                    <thead class="table-light">
+                        <tr class="text-center">
+                            <th class="align-middle" scope="col">Order ID</th>
+                            <th class="align-middle" scope="col">Billing Name</th>
+                            <th class="align-middle" scope="col">Email</th>
+                            <th class="align-middle" scope="col">Date</th>
+                            <th class="align-middle" scope="col">Order Status</th>
+                            <th class="align-middle" scope="col">Amount</th>
+                            <th class="align-middle" scope="col">Payment Method</th>
+                        </tr>
+                    </thead>
+                 
+                    <tbody>
+                        <% for (let i=0;i<order.length;i++) {%>
+                        <tr class="text-center">
+                            <td><%= order[i].orderId %></td>
+                            <td><%= order[i].address.name %></td>
+                            <td>shijihcl@gmail.com</td>
+                            <td>
+                            <% var createdOn = new Date(order[i].createdOn); %>
+                            <%= createdOn.toLocaleDateString() %>
+                            </td>
+                            <td> <%= order[i].status %></td>
+                            <td> <%= order[i].totalAmount %></td>
+                            <td> <%= order[i].paymentMethod%></td>                       
+                            <td>
+                            <a href="/admin/dashboard/orders" class="btn btn-xs"> View details</a>
+                            </td>                            
+                        </tr>
+                        <%}%>
+                        
+                    </tbody>
+                </table>
+               
+            </div>
+        </div> <!-- table-responsive end// -->
+    </div>
+</div>
+</section>
+
+
+
+<%-include("../layoutsAdmin/footer.ejs")%>	

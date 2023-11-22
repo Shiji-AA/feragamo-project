@@ -1,0 +1,91 @@
+<%-include("../layoutsAdmin/header.ejs")%>
+    <main class="main-wrap">
+    <form action="/admin/dashboard/banner/edit/<%= banner._id %>" method="POST"  id="myForm">
+         <section class="content-main">
+        
+            <div class="row">
+                <div class="col-6">
+                    <div class="content-header">
+                        <h2 class="content-title">Edit Banner</h2>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- <div class="col-md-3">
+                                    <h6>1. General info</h6>
+                                </div> -->
+                                <div class="col-md-9">
+
+       
+                                    
+
+                                    <div class="mb-4">
+                                        <label class="form-label">Brand</label>
+                                        <input type="text"  class="form-control" name="description" value="<%=banner.description%>" id="description" >
+                                        <span id="descriptionError"></span>
+                                    </div>
+                                    
+                                    
+
+                                 
+
+                             </div> <!-- col.// -->
+                            </div> <!-- row.// -->
+                            <hr class="mb-4 mt-0">
+                            <div class="row">
+                                <!-- <div class="col-md-3">
+                                    <h6>2. Pricing</h6>
+                                </div> -->
+                                <div class="col-md-9">
+
+                                   
+
+
+                                </div> <!-- col.// -->
+                            </div> <!-- row.// -->
+                            
+                            <hr class="mb-4 mt-0">
+                           
+
+                            <div class="col-lg-6">
+                                <div class="card mb-4">
+                                  <div class="card-header">
+                                    <h4>Media</h4>
+                                  </div>
+                                  <div class="input-upload">
+                                    <div class="input-upload">
+                                      <input class="form-control" id="input1" name="image"value="<%=banner.bannerImages %>" multiple type="file">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+            </div>
+            </div>
+            <div>
+              <button class="btn btn-md rounded font-sm hover-up" value="submit" type="submit">Update</button>
+          </div>
+        </form>
+     <p><%=(typeof message!=='undefined')?message:""%></p> 
+     
+        </section> <!-- content-main end// -->
+       </main>
+
+
+
+   
+    <script src="../admin-assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="../admin-assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="../admin-assets/js/vendors/select2.min.js"></script>
+    <script src="../admin-assets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="../admin-assets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="../admin-assets/js/main.js" type="text/javascript"></script>
+   
+    
+<%-include("../layoutsAdmin/footer.ejs")%>
