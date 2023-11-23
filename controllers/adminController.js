@@ -72,7 +72,7 @@ const loadDashboard = async (req, res) => {
 
     if (userData) {
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-      res.render("adminDashboard", {
+      res.render("adminDashBoard", {
         users: userData,
         revenue: revenue,
         productCount: productCount,
