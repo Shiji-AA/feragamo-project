@@ -4,7 +4,6 @@ const userSchema = mongoose.Schema({
     couponCode : {
         type: mongoose.Types.ObjectId,
         ref: 'Coupon',
-        required: true
     },  
     name: {
         type: String,
