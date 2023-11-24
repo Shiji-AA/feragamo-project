@@ -26,8 +26,17 @@ const addToCart = async (req, res) => {
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
     }
-    const userCart = await Cart.findOne({ user: userId }).populate('cart.productId');
-    const existingCartItem = userCart.cart.find((item) => item.productId.equals(productId));
+    let userCart = await Cart.findOne({ user: userId }).populate('cart.productId');
+    // For new User    
+    if (!userCart) {
+      userCart = new Cart({ user: userId, cart: [] }); // Assuming Cart model has 'user' and 'cart' fields
+    }
+    let existingCartItem;
+    if(userCart){
+       existingCartItem = userCart.cart.find((item) => item.productId.equals(productId));
+    }else{
+      console.error("Cart property is missing in userCart");
+    }    
 
  if (existingCartItem) {
       existingCartItem.quantity += 1;

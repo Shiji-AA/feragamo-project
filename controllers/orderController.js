@@ -52,7 +52,6 @@ const confirmOrder = async (req, res) => {
       if(req.body.couponDiscount>0){
          couponDiscount=req.body.couponDiscount;
       }
-      
       const paymentOption =req.body.paymentMethod;         
       const id = req.session.user._id;   
       const userId = await User.findOne({ _id: id });
@@ -309,13 +308,13 @@ const loadInvoice = async(req,res)=>{
 
   const ordersPagination = async (req, res) => {
    try {
-      
+      const userId= req.session?.user?._id;
        let page = req.query.page || 1;
        let perpage = 5;
-       const orderCount = await Order.find().count();
+       const orderCount = await Order.find({customerId:userId}).countDocuments();
        const count = Math.ceil(orderCount / perpage);     
        const orders = await Order
-           .find()
+           .find({customerId:userId})
            .sort({ _id: -1 })
            .skip((page - 1) * perpage)
            .limit(perpage);       
@@ -330,7 +329,7 @@ const ordersPaginationAdmin = async (req, res) => {
    try {      
        let page = req.query.page || 1;
        let perpage = 5;
-       const orderCount = await Order.find().count();
+       const orderCount = await Order.find().countDocuments();
        const count = Math.ceil(orderCount / perpage);
        const orders = await Order
            .find()
@@ -343,23 +342,7 @@ const ordersPaginationAdmin = async (req, res) => {
        res.status(500).send('Internal Server Error');
    }
 };
-const ordersPaginationUserHome = async (req, res) => {
-   try {      
-       let page = req.query.page || 1;
-       let perpage = 5;
-       const orderCount = await Order.find().count();
-       const count = Math.ceil(orderCount / perpage);
-       const orders = await Order
-           .find()
-           .sort({ _id: -1 })
-           .skip((page - 1) * perpage)
-           .limit(perpage);      
-       res.render("Home1", {orders,count,page});
-   } catch (error) {
-       console.log(error.message);
-       res.status(500).send('Internal Server Error');
-   }
-};
+
 
   
 
@@ -381,6 +364,6 @@ module.exports = {
   returnRequestChange,
   ordersPagination,
   ordersPaginationAdmin,
-  ordersPaginationUserHome,
+
 }
 

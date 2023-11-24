@@ -82,16 +82,16 @@
                         </div>
                         <div class="header-action-right">
                             <div class="header-action-2">
-                                <div class="header-action-icon-2">
+                                <!-- <div class="header-action-icon-2">
                                     <a href="">
                                         <img class="svgInject" alt="Evara" src="assets/imgs/theme/icons/icon-heart.svg">
-                                        <span class="pro-count blue">4</span>
+                                        <span class="pro-count blue"></span>
                                     </a>
-                                </div>
+                                </div> -->
                                 <div class="header-action-icon-2">
                                     <a class="" href="/addTocart">
                                         <img alt="Evara" src="assets/imgs/theme/icons/icon-cart.svg">
-                                        <span class="pro-count blue">2</span>
+                                        <!-- <span class="pro-count blue"></span> -->
                                     </a>
                                 </div>
                             </div>
@@ -325,24 +325,16 @@
                                     <div class="address"
                                         style="box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); padding: 10px; margin-bottom: 10px;">
                                         <input type="radio" name="address" id="address_<%= i %>"
-                                            value="<%= addresses[i]._id %>" style="width: 15px; height: 16px;" <% if
-                                            (i===0) { %> checked <% } %>
-                                            >
-
-                                            <div>Name: <%= addresses[i].name %>
-                                            </div>
-                                            <div>House Name: <%= addresses[i].housename %>
-                                            </div>
-                                            <div>Street: <%= addresses[i].street %>
-                                            </div>
-                                            <div>City: <%= addresses[i].city %>
-                                            </div>
-                                            <div>State: <%= addresses[i].state %>
-                                            </div>
-                                            <div>Pincode: <%= addresses[i].pincode %>
-                                            </div><br>
+                                            value="<%= addresses[i]._id %>" style="width: 15px; height: 16px;">
+                                            
+                                        <div>Name: <%= addresses[i].name %></div>
+                                        <div>House Name: <%= addresses[i].housename %></div>
+                                        <div>Street: <%= addresses[i].street %></div>
+                                        <div>City: <%= addresses[i].city %></div>
+                                        <div>State: <%= addresses[i].state %></div>
+                                        <div>Pincode: <%= addresses[i].pincode %></div><br>
                                     </div>
-                                    <% } %>
+                                <% } %>
                             </div>
 
 
@@ -678,7 +670,7 @@
 
     <!-- ========Razorpay=============== -->
     <script>
-        $(document).ready(function () {
+        $(document).ready(function () {      
             $("#confirmOrder").submit(function (event) {
                 //console.log("order placing started")
                 event.preventDefault(); // Prevent the default form submission
@@ -692,7 +684,11 @@
                 $.ajax({
                     type: "POST",
                     url: "/confirmOrder", // Update the URL to the correct server route
-                    data: { couponDiscount:couponDiscount , paymentMethod: selectedPaymentOption },
+                    data: { 
+                        couponDiscount:couponDiscount , 
+                        paymentMethod: selectedPaymentOption ,
+                       
+                    },
 
                     success: function (response) {
                        

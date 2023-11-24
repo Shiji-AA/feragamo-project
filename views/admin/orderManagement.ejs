@@ -98,7 +98,7 @@
                                 <tr>
                                     <th># OrderId</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">City</th>
                                     <th scope="col">OrderValue</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Ordered On</th>
@@ -114,7 +114,8 @@
                                 <tr>
                                     <td><%= orders[i].orderId %></td>
                                     <td><b><%= orders[i].address.name %></b></td>
-                                    <td>shijihcl@gmail.com</td>
+                                    <td><b><%= orders[i].address.city %></b></td>
+                                    <!-- <td>shijihcl@gmail.com</td> -->
                                     <td><%= orders[i].totalAmount %></td>
                                     
                                     
