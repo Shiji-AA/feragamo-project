@@ -43,7 +43,7 @@ const applyCoupon=async (req,res)=>{
             res.json({noCoupon:"Coupon Not Available"})
         }
     } catch (error) {
-        console.log(error);
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 
@@ -54,7 +54,6 @@ const getAvailableCoupons = async(req,res)=>{
         res.json({ availableCoupons });
     }
     catch(error){
-        console.error('Error fetching unused coupons:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }

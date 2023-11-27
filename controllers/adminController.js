@@ -17,9 +17,11 @@ const loadAdminLogin = async (req, res) => {
       res.render("adminLogin")
     }
   } catch (err) {
-    console.log(err.message);
-  }
+    res.status(500).send('Oops! Something went wrong.');
+    }
 }
+
+
 const verifyAdmin = async (req, res) => {
   try {
     const email = req.body.email;
@@ -44,7 +46,8 @@ const verifyAdmin = async (req, res) => {
       return res.render("adminLogin", { message: "Invalid credentials!" })
     }
   } catch (err) {
-    console.log(err.message)
+
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 //DashBoard
@@ -83,7 +86,7 @@ const loadDashboard = async (req, res) => {
       res.redirect("/login");
     } 
   } catch (err) {
-    console.log(err.message);
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -95,7 +98,7 @@ const loadUsers = async (req, res) => {
     res.render("adminUsersList", { users: userData })
 
   } catch (err) {
-    console.log(err.message)
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -106,7 +109,7 @@ const blockUser = async (req, res) => {
     await Admin.findByIdAndUpdate({ _id: id }, { $set: { is_blocked: true } })
     res.redirect('/admin/dashboard/Users')
   } catch (error) {
-    console.log(error.message)
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -118,7 +121,7 @@ const unBlockUser = async (req, res) => {
 
     res.redirect('/admin/dashboard/Users')
   } catch (error) {
-    console.log(error.message)
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -127,7 +130,7 @@ const adminLogout = async (req, res) => {
     req.session.destroy()
     res.redirect("/admin")
   } catch (err) {
-    console.log(err.message)
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 //OrderManagement
@@ -136,26 +139,22 @@ const loadAdminOrders = async (req, res) => {
     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     const userData = await Admin.find({ is_admin: 0 })
     const orders = await Order.find({})
-    //console.log(orders)
     res.render("orderManagement", { users: userData, orders: orders })
   }
   catch (err) {
-    console.log(err.message);
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
 
 const loadEditOrders = async (req, res) => {
   try {
-    const orderId = req.params.id;
-    
-    
+    const orderId = req.params.id;   
     const orders = await Order.findOne({ _id: orderId }).populate('items.productId')
-    const productData = orders.items
-    //console.log(productData,"HO")
+    const productData = orders.items  
     res.render('adminEditOrders', { orders, productData });
   } catch (error) {
-    console.error(error.message);
+    return res.status(500).send('Oops! Something went wrong.');
   }
 };
 
@@ -196,7 +195,6 @@ const updateOrder = async (req, res) => {
 
     res.redirect("/admin/dashboard/ordersPagination");
   } catch (error) {
-    console.error(error);
     res.status(500).send("Internal Server Error");
   }
 };
@@ -210,7 +208,7 @@ const couponManagementPage=async (req,res)=>{
     const couponDetails=await Coupon.find({})    
       res.render("couponManagement",{couponDetails:couponDetails})
   } catch (error) {
-      console.log(error)
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -241,7 +239,7 @@ const addCoupon=async (req,res)=>{
       }
       
   } catch (error) {
-      console.log(error);
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -252,7 +250,7 @@ const editCouponPage=async (req,res)=>{
       const couponDetails=await Coupon.findOne({_id:couponId})
       res.render("editCoupon",{couponDetails:couponDetails})
   } catch (error) {
-      console.log(error)
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -270,7 +268,7 @@ const updateCoupon=async (req,res)=>{
               res.redirect("/admin/dashboard/coupon")
           }
   } catch (error) {
-      console.log(error);
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -283,7 +281,7 @@ const deleteCoupon=async (req,res)=>{
           res.redirect("/admin/dashboard/coupon")
       }
   } catch (error) {
-      console.log(error);
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -296,7 +294,7 @@ const offerManagementPage=async (req,res)=>{
     const offerDetails=await Offer.find({})    
       res.render("offerManagement",{offerDetails:offerDetails})
   } catch (error) {
-      console.log(error)
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -327,7 +325,7 @@ const addOffer=async (req,res)=>{
       }
       
   } catch (error) {
-      console.log(error);
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -338,7 +336,7 @@ const editOfferPage=async (req,res)=>{
       const offerDetails=await Offer.findOne({_id:offerId})
       res.render("editOffer",{offerDetails:offerDetails})
   } catch (error) {
-      console.log(error)
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -357,7 +355,7 @@ const updateOffer=async (req,res)=>{
               res.redirect("/admin/dashboard/offer")
           }
   } catch (error) {
-      console.log(error);
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 const deleteOffer=async (req,res)=>{
@@ -368,7 +366,7 @@ const deleteOffer=async (req,res)=>{
           res.redirect("/admin/dashboard/offer")
       }
   } catch (error) {
-      console.log(error);
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -381,11 +379,11 @@ const acceptRequest =async(req,res)=>{
       const order= await Order.findOne({_id:orderid})   
       const update=await Order.updateOne({_id:orderid} , {$set:{returnStatus:"Request Accepted" , return:false}})
       await order.save() ;
-      console.log("admin changed status")
+      //console.log("admin changed status")
       await order.save();   
           res.redirect(`/admin/dashboard/ordersPagination`);
   } catch (error) {
-      console.log(error.message)
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 const rejectRequest = async(req,res)=>{
@@ -394,11 +392,11 @@ const rejectRequest = async(req,res)=>{
       const order= await Order.findOne({_id:orderid})
       const update=await Order.updateOne({_id:orderid} , {$set:{returnStatus:"Request Rejected" , return:false}})
       await order.save();
-      console.log("admin changed status")
+      //console.log("admin changed status")
       await order.save();   
       res.redirect(`/admin/dashboard/ordersPagination`);
       } catch (error) {
-      console.log(error.message)
+        return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -411,7 +409,7 @@ const loadSalesReport=async(req,res)=>{
     res.render('salesReport',({order:order}));
   }
   catch(error){
-    console.log(error.message)
+    return res.status(500).send('Oops! Something went wrong.');
   }
 }
 
@@ -521,14 +519,13 @@ const fetchDataGraph = async (req, res) => {
           res.json(ordersByDayOfWeek);
       }          
   } catch (error) {
-      console.log(error);
-      res.status(500).send("An error occurred while fetching data.");
+     res.status(500).send("An error occurred while fetching data.");
   }
 };
 
 const dailyOrder = async (req, res) => {
   try {
-    console.log("Inside dailyOrder function");
+   
     const now = new Date();
     const startOfDay = new Date(now);
     startOfDay.setHours(0, 0, 0, 1);
@@ -539,8 +536,7 @@ const dailyOrder = async (req, res) => {
       createdOn: { $gte: startOfDay, $lte: endOfDay },
     });
      res.render("salesReport", { order:order });
-  } catch (error) {
-    console.error(error);
+  } catch (error) {    
     res.status(500).send("An error occurred while fetching data.");
   }
 };
@@ -563,7 +559,7 @@ const weeklyOrder = async (req, res) => {
     })   
     res.render("salesReport", { order:order });
   } catch (error) {
-    console.log(error.message);
+  
     res.status(500).send("An error occurred while fetching data.");
   }
 };
@@ -578,8 +574,7 @@ const yearlyOrder = async (req, res) => {
       createdOn: { $gte: startOfYear, $lte: endOfYear },
     })     
     res.render("salesReport", { order:order });
-  } catch (error) {
-    console.log(error.message);
+  } catch (error) { 
     res.status(500).send("An error occurred while fetching data.");
    
   }
@@ -596,7 +591,7 @@ const UpdateOrderByDateForm = async (req, res) => {
     })      
     res.render("salesReport", { order:order });
   } catch (error) {
-    console.log(error.message);
+    
     res.status(500).send("An error occurred while fetching data.");
   }
 };
@@ -623,7 +618,7 @@ const invoiceSales = async (req, res) => {
 
     res.render("invoiceSales", { orders, totalFinalAmount });
   } catch (error) {
-    console.log(error.message);
+  
     res.status(500).send("An error occurred while fetching data");
   }
 };

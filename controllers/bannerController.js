@@ -17,49 +17,39 @@ const loadBanner = async (req,res)=>{
         res.status(500).send("Internal server error")
     }
   }
-
   const showAddBanner = async (req, res) => {
     try {
-  res.render('addBanner')
-  
+  res.render('addBanner')  
     } catch (error) {
-      console.log(error.message);
-  
+      res.status(500).send('Oops! Something went wrong.');  
     }
   }  
   
   const addBanner = async (req, res) => {
-    console.log(req.body, " bannerImages", req.files);
-    
+    console.log(req.body, " bannerImages", req.files);    
     try {   
       const newBanner = new Banner({
         name: req.body.name,
         description: req.body.description,
         bannerImages: [],     
-      });  
-      
+      });        
       for (let file of req.files) {
         const randomInteger = Math.floor(Math.random() * 20000001);
         const imageDirectory = "/public/productImages/";
         const imgFileName = "cropped" + randomInteger + ".jpg";
-        const imagePath = path.join(__dirname, "../", imageDirectory, imgFileName);
-        
+        const imagePath = path.join(__dirname, "../", imageDirectory, imgFileName);        
         // Process and save the uploaded image
         const croppedImage = await sharp(file.path)
           .resize(900, 400, { fit: "fill" })
-          .toFile(imagePath);
-        
+          .toFile(imagePath);        
         if (croppedImage) {
           newBanner. bannerImages.push(imgFileName); // Add the filename to the images array
         }
-      }
-      
+      }      
       // Save the new banner with the updated images array
-      await newBanner.save();
-      
+      await newBanner.save();      
       res.redirect('/admin/dashboard/banner');
-    } catch (error) {
-      console.error(error); // Log the error for debugging
+    } catch (error) {      
       res.status(500).send("An error occurred while adding the banner.");
     }
   };
@@ -71,9 +61,9 @@ const loadEditBanner = async (req, res) => {
       const banner = bannerData[0]; 
       res.render('editBanner',{banner:banner});
        } catch (error) {
-      console.error(error.message);
-     }
-    };
+      res.status(500).send("Something went wrong")
+    }
+  };
 
   const updateBanner = async (req, res) => {
     try {
@@ -93,7 +83,7 @@ const loadEditBanner = async (req, res) => {
       // console.log(updatedImages);
       //  await Product.findByIdAndUpdate(req.body,updatedImages, { new: true });
     } catch (error) {
-      console.error(error.message);
+      res.status(500).send('Oops! Something went wrong.')
       res.redirect('/admin/dashboard/banner');
     }
   };
@@ -111,7 +101,7 @@ const loadEditBanner = async (req, res) => {
       await banner.save();  
       res.redirect('/admin/dashboard/banner');
     } catch (error) {
-      console.error(error.message);
+      res.status(500).send('Oops! Something went wrong.')
     }
   }
 
@@ -127,7 +117,7 @@ const loadEditBanner = async (req, res) => {
       await banner.save();  
       res.redirect('/admin/dashboard/banner');
     } catch (error) {
-      console.error(error.message);
+    res.status(500).send('Oops! Something went wrong.')
     }
   }
 

@@ -41,7 +41,7 @@ const applyOffer = async (req, res) => {
             res.json({ noOffer: "Offer Not Available" });
         }
     } catch (error) {
-        console.log(error);
+        res.status(500).send('Oops! Something went wrong.')
     }
 };
 

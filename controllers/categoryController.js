@@ -13,7 +13,7 @@ const loadAdminCategories = async (req, res) => {
       res.render("adminLogin")
     }
   } catch (err) {
-    console.log(err.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 const loadCategory = async (req, res) => {
@@ -24,7 +24,7 @@ const loadCategory = async (req, res) => {
     res.render("adminCategories", { users: userData, categories: categories })
 
   } catch (err) {
-    console.log(err.message)
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 
@@ -35,7 +35,7 @@ const loadAddCategory = async (req, res) => {
   try {
     res.render('addCategory')
   } catch (error) {
-    console.log(error.message)
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 
@@ -60,7 +60,7 @@ const addCategory = async (req, res) => {
     res.redirect('/admin/dashboard/categories')
   }
   catch (error) {
-    console.log(error.message)
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 
@@ -71,7 +71,7 @@ const editCategory = async (req, res) => {
     res.render('adminCategoryEdit', { categoryData: categoryData });
 
   } catch (error) {
-    console.log(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 const updateCategory = async (req, res) => {
@@ -86,7 +86,7 @@ const updateCategory = async (req, res) => {
       res.redirect('/admin/dashboard/categories'); // Handle the case where the update fails
     }
   } catch (error) {
-    console.error(error.message);
+    res.status(500).send('Oops! Something went wrong.')
     res.redirect('/admin/dashboard/categories'); // Handle errors gracefully
   }
 };
@@ -107,7 +107,7 @@ const unListCategory = async (req, res) => {
 
     res.redirect('/admin/dashboard/categories');
   } catch (error) {
-    console.error(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 
@@ -126,7 +126,7 @@ const reListCategory = async (req, res) => {
 
     res.redirect('/admin/dashboard/categories');
   } catch (error) {
-    console.error(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 

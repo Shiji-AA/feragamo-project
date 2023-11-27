@@ -38,7 +38,7 @@ const loadCheckOut = async (req, res) => {
      
       });
    } catch (error) {
-      console.log(error.message);
+      
       res.status(500).send('Internal Server Error');
    }
 }
@@ -158,7 +158,7 @@ if (activeOffers.length > 0) {
 
 }}
    catch (error) {
-      console.log(error.message);
+      
       return res.json({ error: 'An error occurred while processing your order.' });
    }
 }
@@ -219,7 +219,7 @@ const cancelOrder = async (req, res) => {
          return res.redirect("/myProfile?orderId=" + orderId);
       }
    } catch (error) {
-      console.log(error.message);
+      
       res.status(500).send("Error cancelling order");
    }
 };
@@ -230,7 +230,7 @@ const loadEmptyCart = async (req, res) => {
       res.render('emptyCart')
    }
    catch (error) {
-      console.log(error.message)
+      res.status(500).send('Oops! Something went wrong.')
    }
 }
 
@@ -239,7 +239,7 @@ const loadOrderPlaced = async (req, res) => {
       res.render('orderPlaced')
    }
    catch (error) {
-      console.log(error.message)
+res.status(500).send('Oops! Something went wrong.')
    }
 }
 
@@ -251,7 +251,7 @@ const loadConfirm = async (req, res) => {
          res.render("checkout.ejs")
       }
    } catch (error) {
-      console.log(error.message);
+      res.status(500).send('Oops! Something went wrong.')
    }
 }
 
@@ -266,7 +266,7 @@ const loadverify = async (req, res) => {
          res.json({ orderid: orderid })
       }
    } catch (error) {
-      console.log(error.message)
+      res.status(500).send('Oops! Something went wrong.')
    }
 }
 const loadInvoice = async(req,res)=>{
@@ -282,7 +282,7 @@ const loadInvoice = async(req,res)=>{
       res.render('Invoice', { user:user, addresses:addresses,orders:orders,productData})
    }
    catch(error){
-     console.error(error.message)
+      res.status(500).send('Oops! Something went wrong.')
    }}   
 
    const returnRequestChange = async (req, res) => {
@@ -301,7 +301,7 @@ const loadInvoice = async(req,res)=>{
           return res.status(404).json({ message: "Order Not Found" }); // Send error response if order not found
         }
       } catch (error) {
-        console.log(error); // Send error response
+        res.status(500).send('Oops! Something went wrong.')
       }
     };   
 
@@ -320,7 +320,7 @@ const loadInvoice = async(req,res)=>{
            .limit(perpage);       
        res.render("orderListingUserside", {orders,count,page});
    } catch (error) {
-       console.log(error.message);
+       
        res.status(500).send('Internal Server Error');
    }
 }; 
@@ -337,8 +337,7 @@ const ordersPaginationAdmin = async (req, res) => {
            .skip((page - 1) * perpage)
            .limit(perpage);      
        res.render("orderManagement", {orders,count,page});
-   } catch (error) {
-       console.log(error.message);
+   } catch (error) {       
        res.status(500).send('Internal Server Error');
    }
 };

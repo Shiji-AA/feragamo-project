@@ -194,12 +194,18 @@
 
                                             <button type="submit" class="btn btn-warning btn-block"
                                                 onclick="return validateForm()">Register</button>
-                                            <%if (typeof message !=='undefined' ) {%>
+
+                                            <%if (locals.message =="failed" ) {%>
                                                 <p style="color:red;">
                                                     <%= message %>
                                                 </p>
-                                                <%}%>
-                                                    <p>Already have an account?<a href="/login"> Login</a></p>
+                                            <%}else{%>
+                                                    <p style="color:green;">
+                                                        <%= locals.message %>
+                                                    </p>
+                                
+                                             <%}%>                                        
+                                                <p>Already have an account?<a href="/login"> Login</a></p>
 
                                         </form>
 
@@ -364,57 +370,10 @@
 
     <!-- AJAX for OTP STARTS HERE -->
 
-    <script>
-        const sendBtn = document.getElementById("sendotp")
-        const verifyBtn = document.getElementById("verify")
-        const validDiv = document.getElementById("validMessage")
-
-        sendBtn.addEventListener("click", function () {
-            const email = document.getElementById("email").value;
-            fetch("/send-otp", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email: email }),
-            })
-                // .then((response) => response.json())
-                .then((data) => {
-                    messageDiv.textContent = "Success";
-                    // You can handle the response here, e.g., show a success message or redirect the user.
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    messageDiv.textContent = "Error sending OTP. Please try again.";
-                });
-        });
-
-
-        verifyBtn.addEventListener("click", function () {
-            const otp = document.getElementById("otp").value;
-            // const otp = document.getElementById('otp').value;
-            // Send OTP verification request to the server using Ajax
-            fetch("/verify-otp", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ otp: otp }),
-            })
-                //   .then((response) => response.json())
-                .then((data) => {
-                    validDiv.textContent = "Verified"
-                    // validDiv.textContent = "Success"+data;
-                    // You can handle the response here, e.g., show a success message or redirect the user.
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    validDiv.textContent = "Error verifying OTP. Please try again.";
-                });
-        });
-
-    </script>
+   
     <!-- ajax ends here -->
+
+   
 
 
     <%-include("../layouts/footer.ejs")%>

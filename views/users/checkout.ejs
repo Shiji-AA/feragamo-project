@@ -91,7 +91,7 @@
                                 <div class="header-action-icon-2">
                                     <a class="" href="/addTocart">
                                         <img alt="Evara" src="assets/imgs/theme/icons/icon-cart.svg">
-                                        <!-- <span class="pro-count blue"></span> -->
+                                         <span class="pro-count blue"><%= userCart.cart.length %></span> 
                                     </a>
                                 </div>
                             </div>
@@ -367,7 +367,7 @@
                                                             <% } %>
                                                     </td>
                                                     <td class="product-des product-name">
-                                                        <h5 class="product-name"><a href="#">
+                                                        <h5 class="product-name"><a href="/product-detail?id=<%=item.productId._id %>">
                                                                 <%= item.productId.name %>
                                                             </a></h5>
                                                     </td>

@@ -12,7 +12,7 @@ const loadAddtoCart = async (req, res) => {
     const userCart = await Cart.findOne({ user: userId }).populate('cart.productId');
     res.render('addTocart', { product: product, userCart: userCart });
   } catch (error) {
-    console.log(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 };
 
@@ -21,7 +21,6 @@ const addToCart = async (req, res) => {
     const userId = req.session?.user?._id;
     const productId = req.query?.productId;
     const product = await Product?.findById(productId);
-
 
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
@@ -50,13 +49,10 @@ const addToCart = async (req, res) => {
     }
     await userCart.save();
     res.redirect('/addTocart'); // Removed {product: product, userCart: userCart}
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+  } catch (error) {    
+    res.status(500).send('Oops! Something went wrong.')
   }
 };
-
-
 
 
 // Delete cart Item
@@ -169,11 +165,15 @@ const decrementQuantity = async (req, res, next) => {
 
 
 
+
+
+
 module.exports = {
   loadAddtoCart,
   addToCart,
   updateQuantity,
   deleteFromCart,
-  decrementQuantity
+  decrementQuantity,
+  
 
 }

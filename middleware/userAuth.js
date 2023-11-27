@@ -9,7 +9,6 @@ const isLogin = async(req,res,next)=>{
     } catch (error) {
         console.log(error.message);
     }
-
 }
 
 const isLogout = async(req,res,next)=>{
@@ -27,9 +26,9 @@ const isBlocked = async (req, res, next) => {
   try {
     const userId = req.session.user_id;  
     const user = await User.findOne({ _id: userId }); 
-    if (user?.is_blocked == true) {
+    if (user?.is_blocked === true) {
       await res.cookie("session", "", { maxAge: 1 });
-      return res.redirect("/");
+      return res.redirect("/login");
     } else {
       next();
     }
@@ -38,6 +37,8 @@ const isBlocked = async (req, res, next) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+
 
 
 module.exports = {

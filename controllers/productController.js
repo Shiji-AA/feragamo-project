@@ -12,7 +12,7 @@ const loadProducts = async (req, res) => {
     res.render('displayProduct', { product: product })
 
   } catch (error) {
-    console.log(error.message);
+    res.status(500).send('Oops! Something went wrong.')
 
   }
 }
@@ -25,7 +25,7 @@ const showAddProduct = async (req, res) => {
     res.render('addProduct', { category: categories })
 
   } catch (error) {
-    console.log(error.message);
+    res.status(500).send('Oops! Something went wrong.')
 
   }
 }
@@ -84,7 +84,7 @@ const loadEditProduct = async (req, res) => {
     const product = productData[0];
     res.render('adminEditProduct', { product: product, category: categories });
   } catch (error) {
-    console.error(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 };
 
@@ -107,7 +107,7 @@ const updateProduct = async (req, res) => {
     // console.log(updatedImages);
     //  await Product.findByIdAndUpdate(req.body,updatedImages, { new: true });
   } catch (error) {
-    console.error(error.message);
+    
     res.redirect('/admin/dashboard/products');
   }
 };
@@ -125,7 +125,7 @@ const unListProduct = async (req, res) => {
 
     res.redirect('/admin/dashboard/products');
   } catch (error) {
-    console.error(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 
@@ -145,7 +145,7 @@ const reListProduct = async (req, res) => {
 
     res.redirect('/admin/dashboard/products');
   } catch (error) {
-    console.error(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 

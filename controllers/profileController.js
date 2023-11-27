@@ -12,7 +12,7 @@ const loadmyProfile = async (req, res) => {
     const orders = await Order.find({ customerId: id })
     res.render('myProfile', { user, addresses, orders })
   } catch (error) {
-    console.log(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 
@@ -24,7 +24,7 @@ const orderListingUserside = async (req, res) => {
     const orders = await Order.find({ customerId: id })
     res.render('orderListingUserside', { user, addresses, orders })
   } catch (error) {
-    console.log(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 
@@ -38,7 +38,7 @@ const loadEditProfile = async (req, res) => {
 
     res.render('editProfile', { user,addresses, orders })
   } catch (error) {
-    console.log(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 
@@ -58,7 +58,7 @@ const viewOrderdetails = async (req, res) => {
 
     res.render('viewOrderdetails', { user, orders, productData })
   } catch (error) {
-    console.log(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 
@@ -86,7 +86,7 @@ const editProfile = async (req, res) => {
     else
       res.render('myProfile', {user: updatedUser, addresses: addresses,orders});
   } catch (error) {
-    console.log(error.message);
+    res.status(500).send('Oops! Something went wrong.')
   }
 };
 
@@ -173,7 +173,7 @@ const loadEditAddress = async (req, res) => {
     res.render('editAddress', { addresses: addresses, user: user})
   }
   catch (error) {
-    console.log(error.message)
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 
@@ -214,7 +214,7 @@ const editAddress = async (req, res) => {
     res.redirect('/myProfile');
   }
   catch (error) {
-    console.log(error.message)
+    res.status(500).send('Oops! Something went wrong.')
   }
 }
 
@@ -226,9 +226,8 @@ const deleteAddress = async (req, res) => {
     res.redirect('/myProfile');
   }
   catch (error) {
-    console.log(error.message);
-
-  }
+    res.status(500).send('Oops! Something went wrong.')
+ }
 }
 
 

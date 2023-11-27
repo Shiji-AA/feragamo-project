@@ -6,35 +6,34 @@ const nodemailer = require("nodemailer")
 const bcrypt = require("bcrypt");
 
 
-
-
 const securePassword = async (password) => {
     try {
         const passwordHash = await bcrypt.hash(password, 10);
         return passwordHash;
     } catch (err) {
-        console.log(err.message)
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 
 const loadHome = async (req, res) => {
-    try {
+    try {         
         const categories = await CategoryModel.find({ isActive: true });
         const product = await Product.find({ isListed: true });
         const banner = await Banner.find({ isListed:true});
+      
         res.render("index",{category:categories,product:product,banner:banner})
     } catch (err) {
-        console.log(err.message);
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 
 const loadHome1 = async (req, res) => {
-    try {
+    try {        
         const categories = await CategoryModel.find({ isActive: true })
         const product = await Product.find({ isListed: true })    
         res.render("Home1", { category: categories, product: product })
     } catch (err) {
-        console.log(err.message);
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 const loadMen = async (req, res) => {
@@ -43,7 +42,7 @@ const loadMen = async (req, res) => {
         const product = await Product.find({ gender: 'male' })
         res.render("men", { category: categories, product: product })
     } catch (err) {
-        console.log(err.message);
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 const loadWoman = async (req, res) => {
@@ -52,7 +51,7 @@ const loadWoman = async (req, res) => {
         const product = await Product.find({ gender: 'female' })
         res.render("woman", { category: categories, product: product })
     } catch (err) {
-        console.log(err.message);
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 const loadCasual = async (req, res) => {
@@ -61,7 +60,7 @@ const loadCasual = async (req, res) => {
         const product = await Product.find({ category: "CASUAL" })
         res.render("casual", { category: categories, product: product })
     } catch (err) {
-        console.log(err.message);
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 const loadFormal = async (req, res) => {
@@ -70,7 +69,7 @@ const loadFormal = async (req, res) => {
         const product = await Product.find({ category: "FORMAL" })
         res.render("formal", { category: categories, product: product })
     } catch (err) {
-        console.log(err.message);
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 const loadSport = async (req, res) => {
@@ -79,7 +78,7 @@ const loadSport = async (req, res) => {
         const product = await Product.find({ category: "SPORT" })
         res.render("sport", { category: categories, product: product })
     } catch (err) {
-        console.log(err.message);
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 
@@ -87,7 +86,7 @@ const loadRegister = async (req, res) => {
     try {
         res.render("registration")
     } catch (err) {
-        console.log(err.message);
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 
@@ -108,16 +107,20 @@ const insertUser = async (req, res) => {
             })
             const userData = await user.save()
             if (userData) {
-                res.redirect("/login")
+                res.render("registration", { message: "Registered Successfully" });
             } else {
                 res.render("registration", { message: "failed" });
             }
         }
     }
     catch (error) {
-        console.log(error.message);
+    res.status(500).send('Oops! Something went wrong.')
     }
 }
+
+
+
+
 
 
 // =========================OTP Starts====================================
@@ -154,7 +157,7 @@ const sendOTP = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Error: ", error);
+        
         return res.status(500).json({ message: "Failed to send OTP email" });
     }
 };
@@ -173,7 +176,7 @@ const verifyOTP = async (req, res) => {
             return false;
         }
     } catch (error) {
-        console.log(error.message);
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 // =====================OTP Ends=========================================
@@ -185,8 +188,9 @@ const loadlogin = async (req, res) => {
             res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
             res.render("login");
         }
-    } catch (err) {
-        console.log(err.message);
+    } catch (error) {
+
+        console.log(error.message)
     }
 }
 
@@ -219,8 +223,8 @@ const verifyUser = async (req, res) => {
         } else {
             return res.render("login", { message: "Invalid Credentials!" });
         }
-    } catch (err) {
-        console.error(err.message);
+    } catch (error) {
+        res.status(500).send()
 
     }
 }
@@ -232,7 +236,7 @@ const loadForgotPasswordPage = async (req, res) => {
         res.render("forgotPassword")
     }
     catch (error) {
-        console.log(error.message)
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 
@@ -283,7 +287,7 @@ const forgetVerifyOtp = async (req, res) => {
         }
 
     } catch (error) {
-        console.log(error.message)
+        
         return res.status(500).json({ message: "Failed to send OTP email" });
     }
 }
@@ -296,7 +300,7 @@ const loadResetPage = async (req, res) => {
         res.render("resetPassword")
     }
     catch (error) {
-        console.log(error)
+        res.status(500).send('Oops! Something went wrong.')
     }
 
 }
@@ -317,7 +321,7 @@ const verifyOtp = async (req, res) => {
         }
     }
     catch (error) {
-        console.log(error.message);
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 
@@ -333,7 +337,7 @@ const resetPassword = async (req, res) => {
 
     }
     catch (error) {
-        console.log(error.message)
+        res.status(500).send('Oops! Something went wrong.')
 
     }
 
@@ -353,7 +357,7 @@ const loadProductDetail = async (req, res) => {
         res.render('product-detail', { product: product, category: categories });
     }
     catch (error) {
-        console.error(error.message);
+        res.status(500).send('Oops! Something went wrong.')
     }
 
 }
@@ -363,7 +367,7 @@ const userLogout = async (req, res) => {
         req.session.destroy();
         res.redirect("/")
     } catch (error) {
-        console.log(error.message)
+        res.status(500).send('Oops! Something went wrong.')
     }
 }
 const searchProduct = async (req, res) => {
@@ -373,14 +377,13 @@ const searchProduct = async (req, res) => {
     
       const product = await Product.find({
         $and: [
-          { name: { $regex: new RegExp('^' + searchCriteria, 'i') } }, // Starts with searchCriteria (case-insensitive)
+          { name: { $regex: new RegExp('^' + searchCriteria, 'i') } }, 
             ]
       });
   
-      res.render('home1', { product,category }); // Assuming 'home1' is your view and passing the found products
+      res.render('Home1', { product,category }); 
   
-    } catch (error) {
-      console.log(error.message);
+    } catch (error) {      
       res.status(500).send('Internal Server Error');
     }
   }
